@@ -1,0 +1,96 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+header .navbar-toggler {
+  border: none; }
+
+header .navbar-toggler:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none; }
+
+.mobile-navbar-top {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 9999;
+  overflow-y: auto;
+  left: -75vw;
+  width: 75vw;
+  color: whitesmoke;
+  padding-top: 2.75rem;
+  background: rgba(41, 38, 70, 0.98);
+  transition: 3.5s;
+  -webkit-transition: 3.5s;
+  -moz-transition: 3.5s;
+  -o-transition: 3.5s; }
+
+.mobile-navbar-top * {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.mobile-navbar-top a, .mobile-navbar-top .btn {
+  display: block;
+  position: relative;
+  color: white;
+  padding: 0.625rem 1rem;
+  font-weight: 300;
+  font-size: 1rem;
+  margin-left: 1.5rem; }
+
+.mobile-navbar-top a:hover,
+.mobile-navbar-top .active > a,
+.mobile-navbar-top li:hover > a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none; }
+
+.mobile-nav-toggle {
+  position: fixed;
+  left: -65vw;
+  top: 1.85rem;
+  z-index: 9998;
+  border: 0;
+  background: none;
+  font-weight: 300;
+  font-size: 1.75rem;
+  transition: all 3s ease-in-out;
+  -webkit-transition: all 3s ease-in-out;
+  -o-transition: all 3s ease-in-out;
+  outline: none !important;
+  line-height: 1;
+  cursor: pointer;
+  text-align: center;
+  padding: 0.25rem 0.75rem; }
+
+.mobile-nav-toggle i {
+  color: rgba(255, 255, 255, 0.55); }
+
+.mobile-nav-overly {
+  width: 100%;
+  height: 100%;
+  z-index: 9997;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: rgba(40, 38, 70, 0.8);
+  overflow: hidden;
+  display: none; }
+
+.mobile-nav-active {
+  overflow: hidden; }
+
+.mobile-nav-active .mobile-navbar-top {
+  left: 0; }
+
+.mobile-nav-active .mobile-nav-toggle {
+  left: 85vw; }
+
+.mobile-nav-active .mobile-nav-toggle i {
+  color: #fff; }
+
+.mobile-nav-active .navbar-toggler {
+  display: none; }
+
+/*# sourceMappingURL=mobile.nav.css.map */

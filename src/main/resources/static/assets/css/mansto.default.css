@@ -1,0 +1,182 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 06-Jun-2021, 01:44:27
+    Author     : edmilson.cassecasse
+*/
+/*========================================
+========= 0. Importing Fonts
+==========================================*/
+/******************************************
+********* 0.1. POPPINS BOLD
+*******************************************/
+@import url(https://fonts.googleapis.com/css?family=Nunito:300,400,600,700);
+@font-face {
+  font-family: 'Poppins-Bold';
+  src: url("http://static.mansto.com/assets/fonts/poppins/bold/Poppins-Bold.eot");
+  src: local(""), url("http://static.mansto.com/assets/fonts/poppins/bold/Poppins-Bold.woff") format("woff"), url("http://static.mansto.com/assets/fonts/poppins/bold/Poppins-Bold.ttf") format("truetype"), url("http://static.mansto.com/assets/fonts/poppins/bold/Poppins-Bold.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+/******************************************
+********* 0.2. POPPINS SEMIBOLD
+*******************************************/
+@font-face {
+  font-family: 'Poppins-SemiBold';
+  src: url("http://static.mansto.com/assets/fonts/poppins/semiBold/Poppins-SemiBold.eot");
+  src: local(""), url("http://static.mansto.com/assets/fonts/poppins/semiBold/Poppins-SemiBold.woff") format("woff"), url("http://static.mansto.com/assets/fonts/poppins/semiBold/Poppins-SemiBold.ttf") format("truetype"), url("http://static.mansto.com/assets/fonts/poppins/SemiBold/Poppins-SemiBold.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+/******************************************
+********* 0.3. POPPINS REGULAR
+*******************************************/
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url("http://static.mansto.com/assets/fonts/poppins/regular/Poppins-Regular.eot");
+  src: local(""), url("http://static.mansto.com/assets/fonts/poppins/regular/Poppins-Regular.woff") format("woff"), url("http://static.mansto.com/assets/fonts/poppins/regular/Poppins-Regular.ttf") format("truetype"), url("http://static.mansto.com/assets/fonts/poppins/regular/Poppins-Regular.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+/******************************************
+********* 0.4. POPPINS LIGHT
+*******************************************/
+@font-face {
+  font-family: 'Poppins-Light';
+  src: url("http://static.mansto.com/assets/fonts/poppins/light/Poppins-Light.eot");
+  src: local(""), url("http://static.mansto.com/assets/fonts/poppins/light/Poppins-Light.woff") format("woff"), url("http://static.mansto.com/assets/fonts/poppins/light/Poppins-Light.ttf") format("truetype"), url("http://static.mansto.com/assets/fonts/poppins/light/Poppins-Light.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+/******************************************
+********* 0.5. RALEWAY BOLD
+*******************************************/
+@font-face {
+  font-family: 'Raleway-Bold';
+  src: url("http://static.mansto.com/assets/fonts/raleway/bold/Raleway-Bold.eot");
+  src: local(""), url("http://static.mansto.com/assets/fonts/raleway/bold/Raleway-Bold.woff") format("woff"), url("http://static.mansto.com/assets/fonts/raleway/bold/Raleway-Bold.ttf") format("truetype"), url("http://static.mansto.com/assets/fonts/raleway/bold/Raleway-Bold.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+/******************************************
+********* 0.6. RALEWAY SEMIBOLD
+*******************************************/
+@font-face {
+  font-family: 'Raleway-SemiBold';
+  src: url("http://static.mansto.com/assets/fonts/raleway/semibold/Raleway-SemiBold.eot");
+  src: local(""), url("http://static.mansto.com/assets/fonts/raleway/semibold/Raleway-SemiBold.woff") format("woff"), url("http://static.mansto.com/assets/fonts/raleway/semibold/Raleway-SemiBold.ttf") format("truetype"), url("http://static.mansto.com/assets/fonts/raleway/semibold/Raleway-SemiBold.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+/******************************************
+********* 0.7. RALEWAY LIGHT
+*******************************************/
+@font-face {
+  font-family: 'Raleway-Light';
+  src: url("http://static.mansto.com/assets/fonts/raleway/light/Raleway-Light.eot");
+  src: local(""), url("http://static.mansto.com/assets/fonts/raleway/light/Raleway-Light.woff") format("woff"), url("http://static.mansto.com/assets/fonts/raleway/light/Raleway-Light.ttf") format("truetype"), url("http://static.mansto.com/assets/fonts/raleway/light/Raleway-Light.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+/******************************************
+********* 0.8. RALEWAY REGULAR
+*******************************************/
+@font-face {
+  font-family: 'Raleway-Regular';
+  src: url("http://static.mansto.com/assets/fonts/raleway/regular/Raleway-Regular.eot");
+  src: local(""), url("http://static.mansto.com/assets/fonts/raleway/regular/Raleway-Regular.woff") format("woff"), url("http://static.mansto.com/assets/fonts/raleway/regular/Raleway-Regular.ttf") format("truetype"), url("http://static.mansto.com/assets/fonts/raleway/regular/Raleway-Regular.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+/******************************************
+********* 0.9. Nunito
+*******************************************/
+/*==========================================
+********* GENERAL
+============================================*/
+body {
+  font-family: "Nunito", sans-serif !important;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #8492a6; }
+
+.section-bg {
+  background-color: #f5f8fd !important; }
+
+.navbar-top {
+  position: fixed;
+  z-index: 1050;
+  width: 100%;
+  top: 0;
+  left: 0; }
+
+/*========================================
+1. Introduction Section
+==========================================*/
+.intro {
+  height: 90vh;
+  text-align: center; }
+
+.intro img {
+  width: 85%;
+  position: relative;
+  top: 25vh; }
+
+.intro h1 {
+  font-size: 2.75rem;
+  font-weight: 400;
+  position: relative;
+  top: 30vh; }
+
+.intro a {
+  position: relative;
+  top: 30vh;
+  margin-top: 1.75rem; }
+
+/*==============================================
+2. How it Looks Section
+================================================*/
+/*==============================================
+3. Why us Section
+================================================*/
+.why-us .why-us-content .features {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 1rem;
+  border: 1px solid transparent !important; }
+
+.why-us .why-us-content .features i {
+  float: left;
+  margin-left: 0.5rem;
+  height: 4rem;
+  width: 4rem;
+  text-align: center;
+  padding-top: 0.85rem;
+  border-radius: 75%;
+  background-color: #E3E6EB;
+  color: #a9a9a9;
+  opacity: 0.75; }
+
+ion-icon {
+  margin-bottom: 1.5rem;
+  font-size: 2.25rem; }
+
+.why-us .why-us-content .features h4 {
+  margin-left: 5.25rem;
+  margin-bottom: 0.2rem;
+  margin-top: 0.35rem;
+  font-size: 1.425rem;
+  font-weight: 900;
+  color: #6c6c6c;
+  border: 1px solid transparent !important; }
+
+.why-us .why-us-content .features p {
+  margin-left: 5.25rem;
+  font-size: 1.15rem;
+  font-weight: normal;
+  color: #787878;
+  border: 1px solid transparent !important; }
+
+/*==============================================
+3. Plans & Pricing Section
+================================================*/
+.price-header {
+  border: 1px solid #0000ff !important; }
+
+/*# sourceMappingURL=mansto.default.css.map */

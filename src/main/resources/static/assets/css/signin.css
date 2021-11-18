@@ -1,0 +1,219 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 08-Jun-2021, 21:53:46
+    Author     : edmilson.cassecasse
+*/
+body {
+  font-family: BinancePlex, Arial, PingFangSC-Regular, "Microsoft YaHei", sans-serif !important; }
+
+html body {
+  font-family: BinancePlex, Arial, PingFangSC-Regular, "Microsoft YaHei", sans-serif !important; }
+
+.register-form {
+  background-color: #ffffff;
+  box-shadow: none !important; }
+
+.create-account {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 30px;
+  line-height: 34px;
+  color: #1E2329;
+  margin-bottom: 12px; }
+
+.welcome-text {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #707A8A;
+  margin-bottom: 28px; }
+
+.text-label {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #474D57; }
+
+.btn-register {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  box-sizing: border-box;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  outline: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  word-break: keep-all;
+  color: #212833;
+  border-radius: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  min-height: 24px;
+  border: none;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-image: linear-gradient(180deg, #F8D12F 0%, #F0B90B 100%);
+  width: 100%;
+  height: 40px; }
+
+.btn-register:disabled {
+  cursor: not-allowed;
+  background-image: none;
+  background-color: #EAECEF;
+  color: #B7BDC6; }
+
+.btn-register:hover:not(:disabled):not(:active) {
+  box-shadow: none; }
+
+.btn-register.inactive {
+  opacity: 0.7;
+  cursor: not-allowed; }
+
+.btn-register:active:not(:disabled):not(.inactive) {
+  background-image: none;
+  background-color: #F0B90B; }
+
+.btn-register:hover:not(:disabled):not(:active):not(.inactive) {
+  box-shadow: none;
+  background-image: linear-gradient(180deg, #FFE251 0%, #EDC423 100%); }
+
+.chkbx-group {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #474D57;
+  font-size: 14px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.chbx-text {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  line-height: 18px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: 12px; }
+
+.chbx-text a {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: #F0B90B; }
+
+.chbx-text a:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: #FCD535; }
+
+.chbx-link {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0; }
+
+.query-account {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 12px;
+  line-height: 17px;
+  color: #707A8A;
+  margin-top: 24px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.query-account-link {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-size: 12px;
+  color: #C99400;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  line-height: 17px; }
+
+.query-account-link:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: #FCD535; }
+
+.footer {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  padding: 12px;
+  color: #474D57; }
+
+@media (min-width: 767.4px) {
+  body {
+    background-color: #fafafa;
+    font-family: BinancePlex, Arial, PingFangSC-Regular, "Microsoft YaHei", sans-serif !important; }
+
+  .register-form {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important; } }
+
+/*# sourceMappingURL=signin.css.map */
