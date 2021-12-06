@@ -9,7 +9,9 @@ $(document).ready(() => {
         autoplay: true,
         loop: true,
         items: 3,
-        dots: false
+        dots: false,
+        center: true,
+        smartSpeed: 3000
     });
 });
 

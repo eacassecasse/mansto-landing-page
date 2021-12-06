@@ -93,11 +93,53 @@ body {
   font-family: "Nunito", sans-serif !important;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.7;
-  color: #8492a6; }
+  line-height: 1.7; }
+
+.scrolled {
+  background: linear-gradient(50deg, #6e00ff 0, #bb00ff 100%); }
+
+.zindex-100 {
+  z-index: 100 !important; }
+
+.text-white {
+  color: #FFF !important; }
+
+.btn-white {
+  color: #273444;
+  background-color: #fff;
+  border-color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15); }
+
+.btn-white:hover {
+  color: #273444;
+  background-color: #ececec;
+  border-color: #e6e6e6; }
+
+.btn-white:focus, .btn-white.focus {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 0 rgba(255, 255, 255, 0.35); }
+
+.btn-white.disabled, .btn-white:disabled {
+  color: #273444;
+  background-color: #FFF;
+  border-color: #FFF; }
+
+.btn-white:not(:disabled):not(.disabled):active,
+.btn-white:not(:disabled):not(.disabled).active,
+.show > .btn-white.dropdown-toggle {
+  color: #273444;
+  background-color: #e6e6e6;
+  border-color: #dfdfdf; }
+
+.btn-white:not(:disabled):not(.disabled):active:focus,
+.btn-white:not(:disabled):not(.disabled).active:focus,
+.show > .btn-white.dropdown-toggle:focus {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 0 rgba(255, 255, 255, 0.35); }
 
 .section-bg {
-  background-color: #f5f8fd !important; }
+  background-color: #6e00ff !important; }
+
+.bg-gradient-primary {
+  background: linear-gradient(50deg, #6e00ff 0, #bb00ff 100%); }
 
 .navbar-top {
   position: fixed;
@@ -105,6 +147,9 @@ body {
   width: 100%;
   top: 0;
   left: 0; }
+
+.navbar-top h1 {
+  color: rgba(255, 255, 255, 0.92); }
 
 /*========================================
 1. Introduction Section
@@ -122,12 +167,15 @@ body {
   font-size: 2.75rem;
   font-weight: 400;
   position: relative;
-  top: 30vh; }
+  top: 30vh;
+  color: rgba(255, 255, 255, 0.92); }
 
 .intro a {
   position: relative;
   top: 30vh;
-  margin-top: 1.75rem; }
+  margin-top: 1.75rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem; }
 
 /*==============================================
 2. How it Looks Section
@@ -149,9 +197,8 @@ body {
   text-align: center;
   padding-top: 0.85rem;
   border-radius: 75%;
-  background-color: #E3E6EB;
-  color: #a9a9a9;
-  opacity: 0.75; }
+  background-color: #5200bd;
+  color: #fff; }
 
 ion-icon {
   margin-bottom: 1.5rem;
@@ -161,22 +208,263 @@ ion-icon {
   margin-left: 5.25rem;
   margin-bottom: 0.2rem;
   margin-top: 0.35rem;
-  font-size: 1.425rem;
-  font-weight: 900;
-  color: #6c6c6c;
   border: 1px solid transparent !important; }
 
 .why-us .why-us-content .features p {
   margin-left: 5.25rem;
   font-size: 1.15rem;
   font-weight: normal;
-  color: #787878;
   border: 1px solid transparent !important; }
 
 /*==============================================
 3. Plans & Pricing Section
 ================================================*/
-.price-header {
-  border: 1px solid #0000ff !important; }
+.price-item {
+  background-color: #fff;
+  -webkit-box-shadow: 0 0.3125rem 1.875rem 0 rgba(39, 39, 39, 0.15);
+  box-shadow: 0 0.3125rem 1.875rem 0 rgba(39, 39, 39, 0.15);
+  margin: 1.75rem;
+  border-radius: 0.85rem;
+  padding: 5rem 0;
+  padding-bottom: 2.5rem !important; }
+
+.price-item .price-header {
+  -webkit-box-shadow: 0 0.3125rem 1.875rem 0 rgba(39, 39, 39, 0.15);
+  box-shadow: 0 0.3125rem 1.875rem 0 rgba(39, 39, 39, 0.15);
+  padding: 3.125rem 0 1.5625rem;
+  background: linear-gradient(50deg, #6e00ff 0, #bb00ff 100%);
+  border-radius: 0.85rem;
+  position: relative;
+  z-index: 0;
+  color: rgba(255, 255, 255, 0.93); }
+
+.price-item .best-choice {
+  position: relative;
+  top: 2.6rem;
+  padding: 0.2rem 1.75rem;
+  background: linear-gradient(50deg, #6e00ff, #510fa8);
+  color: rgba(255, 255, 255, 0.93); }
+
+.price-item .price-header:after {
+  height: 4.725rem;
+  width: 100%;
+  border-radius: 0 0 0.625rem 0.625rem;
+  background: linear-gradient(50deg, #6e00ff 0, #bb00ff 100%);
+  position: absolute;
+  content: '';
+  left: 0;
+  bottom: -1.0625rem;
+  z-index: -1;
+  -webkit-transform: skewY(5deg);
+  transform: skewY(5deg);
+  -webkit-box-shadow: 0 0.3125rem 0.625rem 0 rgba(113, 113, 113, 0.15);
+  box-shadow: 0 0.3125rem 0.625rem 0 rgba(113, 113, 113, 0.15); }
+
+.price-header h2 {
+  padding-top: 1.25rem; }
+
+.price-header sub {
+  position: relative;
+  top: -1.25rem;
+  left: 0.25rem; }
+
+.price-content {
+  margin-top: 3.75rem;
+  margin-bottom: 1.25rem; }
+
+.price-content ul {
+  list-style: none;
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 1.75rem; }
+
+.price-content li {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem; }
+
+.price-content hr {
+  justify-content: center;
+  align-self: center;
+  margin-bottom: 1.75rem;
+  background: linear-gradient(to right, transparent, #510fa8, transparent); }
+
+/*==============================================
+4. Call-to-Action Section
+================================================*/
+.cta {
+  position: relative;
+  top: 6rem; }
+
+.cta .card {
+  background-color: #5200bd !important;
+  color: #FFF; }
+
+.cta .card .card-body {
+  padding-bottom: 2rem !important; }
+
+.cta .card a {
+  text-decoration: none;
+  color: #f5edff;
+  margin-right: 0.5rem;
+  margin-top: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 10rem;
+  background-color: #9849FF; }
+
+.cta .card a:hover, .cta .card a:focus {
+  background-color: #370080;
+  color: #f3d3d3; }
+
+.cta .card a:hover i, .cta .card a:focus i {
+  background-color: #f5edff; }
+
+.cta .card a i {
+  background-color: #fff;
+  font-size: 1.25rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 100%;
+  color: #782121;
+  margin-left: 0.25rem; }
+
+.cta .card a span {
+  margin-left: 0.25rem; }
+
+/*==============================================
+5. Testimonials Section
+================================================*/
+/************************************************
+5.0. General
+*************************************************/
+.testimonials {
+  background-color: #343a40; }
+
+.content-rotate {
+  max-width: 124.375rem;
+  overflow: hidden;
+  margin-top: -18rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 26rem;
+  position: relative;
+  overflow: hidden;
+  background-color: #273444 !important;
+  border: none; }
+
+.content-rotate:before {
+  content: '';
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 2000 1000' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23FFF' d='M2000,0V923.45l-195.85-538.1a76.07875,76.07875,0,0,0-58.25-48.89L536.65,123.24a76.12151,76.12151,0,0,0-71.44,26L0,703.65V0Z'/%3E%3C/svg%3E") no-repeat scroll center center/100% 100% border-box;
+  right: calc(50% - 62.5rem);
+  display: block;
+  min-width: 125rem;
+  height: 62.5rem;
+  pointer-events: none;
+  position: absolute;
+  width: calc(100% + 0.625rem);
+  z-index: 10;
+  top: 0; }
+
+/************************************************
+5.1. Testimonial Comment
+*************************************************/
+/***********************************************
+5.2.Carousel
+************************************************/
+.testimonials-carousel {
+  width: 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
+
+.testimonials-carousel .item {
+  min-height: 1rem;
+  height: auto;
+  padding: 0.3rem;
+  margin: 0.25rem;
+  border-radius: 50% !important; }
+
+.testimonials-carousel .item img {
+  height: 9rem;
+  border-radius: inherit; }
+
+.testimonials-carousel .owl-stage-outer {
+  height: 15rem; }
+
+.testimonials-carousel .owl-item {
+  opacity: 0.4;
+  text-align: center;
+  transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease; }
+
+.testimonials-carousel .owl-item.center {
+  opacity: 1.0;
+  height: 12rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  z-index: 5; }
+
+/*==============================================
+6. Footer Section
+================================================*/
+.footer {
+  padding-top: 3rem; }
+
+.footer > .container > .row > .col > h1 {
+  font-weight: 500;
+  font-size: calc(2.75rem + 0.3vw); }
+
+.footer .heading {
+  color: #eff2f7;
+  font-weight: 600;
+  font-size: calc(1.5rem + 0.15vw); }
+
+.footer li {
+  padding-bottom: 0.15rem; }
+
+.footer li a {
+  color: #d3dce6;
+  text-decoration: none; }
+
+.footer li a:hover, .footer li a:focus {
+  color: #eff2f7; }
+
+.text-sm {
+  font-size: 0.875rem !important; }
+
+.font-weight-bold {
+  font-weight: 600 !important; }
+
+.delimiter-top {
+  position: relative;
+  border: 0; }
+
+.delimiter-top:before {
+  content: '';
+  display: block;
+  width: 80%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -40%;
+  height: 0.0625rem;
+  background: radial-gradient(ellipse at center, rgba(22, 228, 239, 0.2) 0, rgba(255, 255, 255, 0) 75%); }
+
+.footer .copyright a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  background-color: transparent; }
+
+.footer-dark {
+  background-color: #273444;
+  color: #d3dce6; }
 
 /*# sourceMappingURL=mansto.default.css.map */
