@@ -1,0 +1,125 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    display: none;
+}
+
+.mask.active {
+    background-color: #273444;
+}
+
+.mask-body {
+    position: fixed;
+    top: 8vh;
+    left: 0;
+    width: 100%;
+    height: 92vh;
+    cursor: pointer;
+    z-index: 9999;
+    transition: 3.5s;
+    -moz-transition: 3.5s;
+    -o-transition: 3.5s;
+    -webkit-transition: 3.5s;
+}
+
+@media(max-width: 767.98px) {
+
+    .navbar-nav {
+        display: flex !important;
+        flex-basis: 50%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar-nav > * {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar-nav[data-strln-type] {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    .navbar-nav[data-strln-type] .nav-item {
+        width: 40%;
+        text-align: center;
+        padding: 0;
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+        margin-bottom: 0.5rem;
+        background-color: #3C5069;
+    }
+
+    .navbar-nav[data-strln-type='main-navigation'] {
+        padding-top: 3rem !important;
+    }
+
+    .navbar-nav[data-strln-type='main-navigation'] .nav-item {
+        text-align: center;
+        padding: 0;
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .navbar-nav[data-strln-type='sign'] .nav-item {
+        width: 30% !important;
+    }
+
+    .navbar-nav[data-strln-type='language'] .nav-item {
+        background-color: transparent; 
+    }
+
+    .navbar-nav[data-strln-type='language'] .nav-item .nav-link {
+        display: inline !important;
+    }
+
+    .navbar-nav .nav-item .nav-link {
+        display: block;
+        padding: 0;
+        color: #e2e7ee;
+    }
+
+}
+
+.mask-body-dark {
+    background: #273444;
+}
+
+.mask-body-light {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+
+@media(prefers-reduced-motion: reduce) {
+    .mask {
+        transition: none;
+        -moz-transition: none;
+        -o-transition: none;
+        -webkit-transition: none;
+    }
+
+    .mask + .container {
+        position: relative;
+    }
+}
+
+
+

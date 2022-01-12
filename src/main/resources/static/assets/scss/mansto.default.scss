@@ -115,12 +115,27 @@ body {
     line-height: 1.7;
 }
 
+.dropdown-toggle:after {
+    border: none !important;
+}
+
+.dropdown:hover .dropdown-menu:not(.navbar-top .dropdown-menu) {
+    display: block;
+}
+
 .scrolled {
-    background: linear-gradient(50deg, #6e00ff 0, #bb00ff 100%);   
+    background: #273444 !important;
+    box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 0.01rem solid rgba(255, 255, 255, 0.065) !important;
 }
 
 .zindex-100 {
     z-index: 100 !important;
+}
+
+.my-10 {
+    margin-top: 10rem !important;
+    margin-bottom: 10rem !important;
 }
 
 .text-white {
@@ -161,104 +176,147 @@ body {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 0 rgba(255, 255, 255, 0.35); 
 }
 
+.section-rotate {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    overflow: hidden;
+    background: transparent;
+    position: relative;
+    z-index: 0;
+}
+
+.section-rotate .section-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+@media(min-width: 992px) {
+    .section-rotate {
+        min-height: 55rem;
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+    }
+
+    .section-rotate .section-inner {
+        background: inherit;
+        overflow: hidden;
+    }
+}
+
+@media(min-width: 1200px) {
+    .section-rotate {
+        padding-top: 8rem;
+        padding-bottom: 12rem;
+    }
+
+    .section-rotate .section-inner {
+        top: -40%;
+        left: -1rem;
+        width: 130%;
+        height: 124%;
+        transform: rotate(-7deg);
+        -moz-transform: rotate(-7deg);
+        -webkit-transform: rotate(-7deg);
+        border-bottom-left-radius: 3rem;
+    }
+}
+
 .section-bg {
     background-color: #6e00ff !important;
 }
+.bg-section-secondary {
+    background-color: #fafbfe !important;
+}
 
 .bg-gradient-primary {
-    background: linear-gradient(50deg, #6e00ff 0, #bb00ff 100%);
-}
-
-.navbar-top {
-    position: fixed;
-    z-index: 1050;
-    width: 100%;
-    top: 0;
-    left: 0;
-}
-
-.navbar-top h1 {
-    color: rgba(255, 255, 255, 0.92);
+    background: linear-gradient(50deg, #6e00ff 0, #bb00ff 100%) !important;
 }
 
 /*========================================
 1. Introduction Section
 ==========================================*/
 .intro {
-    height: 90vh;
-    text-align: center;
+    height: 100vh;
+    border: none !important;
+}
+
+.intro > .container > .row:first-child {
+    padding-top: 10rem !important;
 }
 
 .intro img {
-    width: 85%;
-    position: relative;
-    top: 25vh;
+    width: 95%;
+    height: 100%;
 }
 
 .intro h1 {
     font-size: 2.75rem;
     font-weight: 400;
-    position: relative;
-    top: 30vh;
     color: rgba(255, 255, 255, 0.92);
 }
 
 .intro a {
-    position: relative;
-    top: 30vh;
-    margin-top: 1.75rem;
+    margin-top: 2.5rem;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
 }
 
+@media (min-width: 567px) {
+    .intro {
+        height: 90vh;
+    }   
+}
+
+@media (min-width: 768px) {
+    .intro > .container {
+        padding: 0 !important;
+    }
+
+    .intro {
+        height: 90vh;
+        padding-top: 8rem;
+    }
+
+    .intro img {
+        height: 100%;
+        width: 120%;
+        position: relative;
+        top: -6rem;
+        left: 1rem;
+    }
+
+    .intro h2 {
+        position: relative;
+        top: 3rem;
+    }
+
+    .intro p {
+        position: relative;
+        top: 1rem;
+    }
+}
+
+@media(min-width: 992px) {
+    .intro {
+        height: 65vh;
+    }
+}
+
 /*==============================================
-2. How it Looks Section
+2. Why us Section
 ================================================*/
 
 
 /*==============================================
-3. Why us Section
+3. How it Looks Section
 ================================================*/
-.why-us .why-us-content .features {
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-bottom: 1rem;
-    border: 1px solid transparent !important;
-}
-
-.why-us .why-us-content .features i {
-    float: left;
-    margin-left: 0.5rem;
-    height: 4rem;
-    width: 4rem;
-    text-align: center;
-    padding-top: 0.85rem;
-    border-radius: 75%;
-    background-color: #5200bd;
-    color: #fff;
-}
-
-ion-icon {
-    margin-bottom: 1.5rem;
-    font-size: 2.25rem;
-}
-
-.why-us .why-us-content .features h4 {
-    margin-left: 5.25rem;
-    margin-bottom: 0.2rem;
-    margin-top: 0.35rem;
-    border: 1px solid transparent !important;
-}
-
-.why-us .why-us-content .features p {
-    margin-left: 5.25rem;
-    font-size: 1.15rem;
-    font-weight: normal;
-    border: 1px solid transparent !important;
-}
 
 /*==============================================
-3. Plans & Pricing Section
+4. Plans & Pricing Section
 ================================================*/
 .price-item {
     background-color: #fff;
@@ -278,7 +336,7 @@ ion-icon {
     border-radius: 0.85rem;
     position: relative;
     z-index: 0;
-    color: rgba(255, 255, 255, 0.93);
+    color: rgba(255, 255, 255, 0.93) !important;
 }
 
 .price-item .best-choice {
@@ -307,6 +365,9 @@ ion-icon {
 
 .price-header h2 {
     padding-top: 1.25rem;
+}
+.price-header h1 {
+    color: rgba(255, 255, 255, 0.93);
 }
 
 .price-header sub {
@@ -340,7 +401,7 @@ ion-icon {
 }
 
 /*==============================================
-4. Call-to-Action Section
+5. Call-to-Action Section
 ================================================*/
 .cta {
     position: relative;
@@ -390,10 +451,10 @@ ion-icon {
     margin-left: 0.25rem;
 }
 /*==============================================
-5. Testimonials Section
+6. Testimonials Section
 ================================================*/
 /************************************************
-5.0. General
+6.0. General
 *************************************************/
 .testimonials {
     background-color: #343a40;
@@ -427,70 +488,136 @@ ion-icon {
 }
 
 /************************************************
-5.1. Testimonial Comment
+6.1. Testimonial Comment
 *************************************************/
 
 /***********************************************
-5.2.Carousel
+6.2.Carousel
 ************************************************/
 .testimonials-carousel {
-    width: 100%;
+    width: 85%;
     padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 0.25rem;
+    margin: auto;
 }
 
-.testimonials-carousel .item {
-    min-height: 1rem;
+.testimonials-carousel .testimonial-item {
+    min-height: 0.5rem;
     height: auto;
-    padding: 0.3rem;
-    margin: 0.25rem;
-    border-radius: 50% !important;
+    padding: 0.5rem;
+    border-radius: 100%;
 }
 
-.testimonials-carousel .item img {
-    height: 9rem;
+.testimonials-carousel .testimonial-item img {
+    height: 6rem;
     border-radius: inherit;
 }
 
-.testimonials-carousel .owl-stage-outer {
-    height: 15rem;
-}
-.testimonials-carousel .owl-item {
-    opacity: 0.4;
-    text-align: center;
-    transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
-}
-
-.testimonials-carousel .owl-item.center {
-    opacity: 1.0;
+.owl-stage-outer {
     height: 12rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    transform: scale(1.5);
-    -moz-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
-    z-index: 5;
 }
 
+.owl-item {
+    opacity: 0.4 !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+    -moz-transition: all 0.3s ease !important;
+    -o-transition: all 0.3s ease !important;
+    -webkit-transition: all 0.3s ease !important;
+}
+
+.owl-item.active.center-element {
+    opacity: 1.0 !important;
+    height: 9rem !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    transform: scale(1.5) !important;
+    -moz-transform: scale(1.5) !important;
+    -webkit-transform: scale(1.5) !important;
+    z-index: 1000 !important;
+}
+
+
+@media(min-width: 576px) {
+
+    .testimonials-carousel {
+        width: 100%;
+    }
+
+    .testimonials-carousel .testimonial-item {
+        min-height: 1rem;
+        height: auto;
+        padding: 0.3rem;
+        margin: 0.25rem;
+        border-radius: 50% !important;
+    }
+
+    .testimonials-carousel .testimonial-item img {
+        height: 9rem;
+        border-radius: inherit;
+    }
+
+    .owl-stage-outer {
+        height: 15rem;
+    }
+
+    .owl-item.active.center-element {
+        height: 12rem !important;
+    }
+}
+
+@media(min-width: 768px) {
+
+    .testimonials-carousel {
+        width: 90%;
+        padding-bottom: 2rem;
+    }
+
+    .testimonials-carousel .testimonial-item {
+        min-height: 1rem;
+        height: auto;
+        padding: 0.1rem;
+        border-radius: 50% !important;
+    }
+
+    .testimonials-carousel .testimonial-item img {
+        height: 4rem;
+        border-radius: inherit;
+    }
+
+    .owl-stage-outer {
+        height: 7rem;
+    }
+
+    .owl-item.active.center-element {
+        height: 12rem !important;
+    }
+}
+
+@media(min-width: 992px) {
+
+    .testimonials-carousel {
+        width: 70%;
+    }
+
+    .testimonials-carousel .testimonial-item img {
+        height: 6rem;
+        border-radius: inherit;
+    }
+
+    .owl-stage-outer {
+        height: 10rem;
+    }
+}
 /*==============================================
-6. Footer Section
+7. Footer Section
 ================================================*/
 .footer {
     padding-top: 3rem;
 }
 
-.footer > .container > .row > .col > h1 {
-    font-weight: 500;
-    font-size: calc(2.75rem + 0.3vw);
-}
-
 .footer .heading {
     color: #eff2f7;
-    font-weight: 600;
-    font-size: calc(1.5rem + 0.15vw);
 }
 
 .footer li {
@@ -541,8 +668,20 @@ ion-icon {
     background-color: transparent;
 }
 
-
 .footer-dark {
     background-color: #273444;
     color: #d3dce6;
+}
+
+.footer-logo {
+    height: 2.5rem;
+    margin-bottom: 0.75rem;
+    opacity: 0.7;
+}
+
+@media(min-width: 992px) {
+    .footer-logo {
+        height: 2rem;
+        margin-bottom: 0.25rem;
+    }
 }

@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA;;;;EAIE;AACF;;;EAGE;AAOF,UAAW;EACP,SAAS,EAAE,KAAK;;AAGpB,eAAgB;EACZ,SAAS,EAAE,KAAK;;AAGpB,YAAa;EACT,KAAK,EAZO,OAAO;EAanB,eAAe,EAAE,IAAI;EACrB,SAAS,EAAE,MAAM;;AAGrB,kBAAmB;EACf,KAAK,EAAE,OAAO;;AAGlB,UAAW;EACP,gBAAgB,EAAE,WAAW",
-"sources": ["../scss/pricing.scss"],
-"names": [],
-"file": "pricing.css"
-}
