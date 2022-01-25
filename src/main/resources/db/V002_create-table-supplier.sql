@@ -13,5 +13,6 @@ CREATE DATABASE IF NOT EXISTS mansto DEFAULT CHARACTER SET utf8mb4;
 USE mansto;
 
 CREATE TABLE IF NOT EXISTS supplier(id INT AUTO_INCREMENT PRIMARY KEY,
-                                    name VARCHAR(95) NOT NULL
+                                    name VARCHAR(95) NOT NULL,
+                                    vatNumber INT NOT NULL UNIQUE
 );

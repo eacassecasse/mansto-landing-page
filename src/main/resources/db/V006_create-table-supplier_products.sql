@@ -12,6 +12,7 @@ USE mansto;
 
 CREATE TABLE IF NOT EXISTS supplier_products(product_id BIGINT NOT NULL,
                                              supplier_id INT NOT NULL,
+                                             price DECIMAL(14,2) NOT NULL,
                                              PRIMARY KEY(product_id, supplier_id),
                                              FOREIGN KEY(product_id) REFERENCES
                                              product(id),
