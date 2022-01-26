@@ -13,28 +13,99 @@
  * 
  * @createdOn 16-Jun-2021
  */
-class SupplierProductRepository extends GenericRepository {
+class SupplierProductRepository {
+
+    private $factory;
 
     public function __construct() {
-        parent::__construct();
+        $this->factory = new ConnectionFactory();
     }
 
-    public function deleteById($id) {
+    private function connect(): mysqli {
+
+        $connection = $this->factory->build();
+
+        if ($connection->connect_errno) {
+
+            throw new ConnectionException("An Error occured when trying to "
+            . "connect to database. \n"
+            . "Please contact your Administrator");
+        }
+
+        return $connection;
+    }
+
+    private function getInsertion(int $inserted_product_id, int $inserted_supplier_id) {
+        $product = new Product();
+        $product->setId($inserted_product_id);
+
+        $supplier = new Supplier();
+        $supplier->setId($inserted_supplier_id);
+
+        $supplierProduct = new SupplierProduct();
+        $supplierProduct->setProduct($product);
+        $supplierProduct->setSupplier($supplier);
+
+        return $this->findFromSupplier($supplierProduct);
+    }
+
+    private function checkRows(int $size, string $message) {
+        if ($size === 0) {
+            throw new Exception($message);
+        }
+    }
+
+    public function deleteByProduct(SupplierProduct $supplierProduct) {
 
         $connection = $this->connect();
         $connection->autocommit(false);
         $connection->begin_transaction();
 
+        $productId = $supplierProduct->getProduct()->getId();
+
         try {
             $sql = "DELETE FROM supplier_products WHERE product_id = ?";
 
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("i", $id);
+            $preparedStatement->bind_param("i", $productId);
             $preparedStatement->execute();
 
             $connection->commit();
 
-            $this->checkRows($preparedStatement->affected_rows, "Could not delete Supplier Product ID = " . $id);
+            $this->checkRows($preparedStatement->affected_rows, "Could not "
+                    . "delete Supplier Product ID = " . $productId);
+
+            return true;
+        } catch (mysqli_sql_exception $exception) {
+            $connection->rollback();
+            throw new Exception($exception);
+        } finally {
+            $preparedStatement->close();
+        }
+    }
+
+    public function deleteFromSupplier(SupplierProduct $supplierProduct) {
+
+        $connection = $this->connect();
+        $connection->autocommit(false);
+        $connection->begin_transaction();
+
+        $productId = $supplierProduct->getProduct()->getId();
+        $supplierId = $supplierProduct->getSupplier()->getId();
+
+        try {
+            $sql = "DELETE FROM supplier_products WHERE product_id = ? "
+                    . "AND supplier_id = ?";
+
+            $preparedStatement = $connection->prepare($sql);
+            $preparedStatement->bind_param("ii", $productId, $supplierId);
+            $preparedStatement->execute();
+
+            $connection->commit();
+
+            $this->checkRows($preparedStatement->affected_rows, "Could not "
+                    . "delete Supplier Product ID = " . $productId
+                    . " From Supplier ID = " . $supplierId);
 
             return true;
         } catch (mysqli_sql_exception $exception) {
@@ -74,15 +145,17 @@ class SupplierProductRepository extends GenericRepository {
         return $supplierProducts;
     }
 
-    public function findById($id) {
+    public function findByProduct(SupplierProduct $supplierProduct) {
 
         $connection = $this->connect();
+
+        $productId = $supplierProduct->getProduct()->getId();
 
         try {
             $sql = "SELECT * FROM supplier_products WHERE product_id = ?";
 
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("i", $id);
+            $preparedStatement->bind_param("i", $productId);
             $preparedStatement->execute();
 
             $result = $preparedStatement->get_result();
@@ -92,10 +165,9 @@ class SupplierProductRepository extends GenericRepository {
             }
 
             $supplierProducts = array();
-            while($supplierProduct = $result->fetch_assoc()) {
+            while ($supplierProduct = $result->fetch_assoc()) {
                 array_push($supplierProducts, $supplierProduct);
             }
-            
         } catch (mysqli_sql_exception $exception) {
             throw new Exception($exception);
         } finally {
@@ -104,12 +176,12 @@ class SupplierProductRepository extends GenericRepository {
         return $supplierProducts;
     }
 
-    public function findBySupplier(Supplier $supplier) {
+    public function findBySupplier(SupplierProduct $supplierProduct) {
 
         $connection = $this->connect();
 
-        $supplierId = $supplier->getId();
-        
+        $supplierId = $supplierProduct->getSupplier()->getId();
+
         try {
             $sql = "SELECT * FROM supplier_products WHERE supplier_id = ?";
 
@@ -135,6 +207,35 @@ class SupplierProductRepository extends GenericRepository {
         return $supplierProducts;
     }
 
+    public function findFromSupplier(SupplierProduct $supplierProduct) {
+
+        $connection = $this->connect();
+
+        $productId = $supplierProduct->getProduct()->getId();
+        $supplierId = $supplierProduct->getSupplier()->getId();
+
+        try {
+            $sql = "SELECT * FROM supplier_products WHERE product_id = ? AND supplier_id = ?";
+
+            $preparedStatement = $connection->prepare($sql);
+            $preparedStatement->bind_param("ii", $productId, $supplierId);
+            $preparedStatement->execute();
+
+            $result = $preparedStatement->get_result();
+
+            if ($result->num_rows === 0) {
+                $createdsupplierProduct = null;
+            }
+
+            $createdsupplierProduct = $result->fetch_assoc();
+        } catch (mysqli_sql_exception $exception) {
+            throw new Exception($exception);
+        } finally {
+            $preparedStatement->close();
+        }
+        return $createdsupplierProduct;
+    }
+
     public function insert($object) {
 
         $connection = $this->connect();
@@ -146,20 +247,21 @@ class SupplierProductRepository extends GenericRepository {
                     . "SupplierProduct instance!";
         }
 
+        $price = $object->getPrice();
         $productId = $object->getProduct()->getId();
         $supplierId = $object->getSupplier()->getId();
 
         try {
             $sql = "INSERT INTO supplier_products ";
-            $sql .= "(product_id, supplier_id) VALUES (?,?)";
+            $sql .= "(price, product_id, supplier_id) VALUES (?,?,?)";
 
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("ii", $productId, $supplierId);
+            $preparedStatement->bind_param("dii", $price, $productId, $supplierId);
             $preparedStatement->execute();
 
             $connection->commit();
 
-            $supplierProduct = $this->getInsertion($productId);
+            $supplierProduct = $this->getInsertion($productId, $supplierId);
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
             throw new Exception($exception);
@@ -181,24 +283,25 @@ class SupplierProductRepository extends GenericRepository {
                     . "SupplierProduct instance!";
         }
 
+        $price = $object->getPrice();
         $productId = $object->getProduct()->getId();
         $supplierId = $object->getSupplier()->getId();
 
         try {
-            $sql = "UPDATE supplier_products SET supplier_id = ? ";
-            $sql .= "WHERE product_id = ?";
+            $sql = "UPDATE supplier_products SET price = ? ";
+            $sql .= "WHERE product_id = ? AND supplier_id = ?";
 
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("ii", $supplierId, $productId);
+            $preparedStatement->bind_param("dii", $price, $productId, $supplierId);
             $preparedStatement->execute();
 
             $connection->commit();
 
             if ($preparedStatement->affected_rows === 0) {
-               $supplierProduct = null; 
+                $supplierProduct = null;
             }
-            
-            $supplierProduct = $this->findById($productId);
+
+            $supplierProduct = $this->findFromSupplier($object);
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
             throw new Exception($exception);

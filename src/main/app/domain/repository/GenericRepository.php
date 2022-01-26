@@ -26,10 +26,10 @@ abstract class GenericRepository implements Generic {
         $connection = $this->factory->build();
 
         if ($connection->connect_errno) {
-            
+
             throw new ConnectionException("An Error occured when trying to "
-                    . "connect to database. \n"
-                    . "Please contact your Administrator");
+            . "connect to database. \n"
+            . "Please contact your Administrator");
         }
 
         return $connection;

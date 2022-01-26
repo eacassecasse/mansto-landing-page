@@ -11,15 +11,27 @@
  *
  * @author edmilson.cassecasse
  */
-class Storage {
+class Storage implements JsonSerializable {
 
     private $id;
     private $designation;
     private $code;
-    private $products;
+    private $products = array();
 
     public function __construct() {
         
+    }
+
+    public function addProduct(Product $product) {
+        if (($key = array_search($product, $this->products)) === false) {
+            array_push($this->products, $product);
+        }
+    }
+
+    public function removeProduct(Product $product) {
+        if (($key = array_search($product, $this->porducts)) !== false) {
+            unset($this->products[$key]);
+        }
     }
 
     public function getId() {
@@ -34,7 +46,7 @@ class Storage {
         return $this->code;
     }
 
-    public function getProducts() {
+    public function getProducts(): array {
         return $this->products;
     }
 
@@ -50,7 +62,7 @@ class Storage {
         $this->code = $code;
     }
 
-    public function setProducts($products) {
+    public function setProducts(array $products) {
         $this->products = $products;
     }
 
@@ -75,6 +87,15 @@ class Storage {
         return "Storage {" . "ID = " . $this->getId() . ", Designation = '"
                 . $this->getDesignation() . '\'' . ", Code = '"
                 . $this->getCode() . '\'' . '}';
+    }
+
+    public function jsonSerialize() {
+        return [
+            'id' => $this->getId(),
+            'description' => $this->getDesignation(),
+            'code' => $this->getCode(),
+            'products' => $this->getProducts()
+        ];
     }
 
 }

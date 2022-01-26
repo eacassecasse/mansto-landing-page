@@ -13,7 +13,7 @@
  * 
  * @createdOn 08-Jun-2021
  */
-class User {
+class User implements JsonSerializable {
 
     private $id;
     private $email;
@@ -62,11 +62,19 @@ class User {
 
         return $object->getEmail() == $this->getEmail();
     }
-    
+
     public function __toString() {
         return "User {" . "ID = " . $this->getId() . ", Email = '"
                 . $this->getEmail() . '\'' . ", Password = '"
                 . $this->getPassword() . '\'' . '}';
+    }
+
+    public function jsonSerialize() {
+        return [
+            'id' => $this->getId(),
+            'email' => $this->getEmail(),
+            'password' => $this->getPassword()
+        ];
     }
 
 }

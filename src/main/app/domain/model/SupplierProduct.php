@@ -13,13 +13,18 @@
  * 
  * @createdOn 05-Jun-2021
  */
-class SupplierProduct {
+class SupplierProduct implements JsonSerializable {
 
     private $product;
     private $supplier;
+    private $price;
 
     public function __construct() {
         
+    }
+
+    public function getPrice() {
+        return $this->price;
     }
 
     public function getProduct(): Product {
@@ -28,6 +33,10 @@ class SupplierProduct {
 
     public function getSupplier(): Supplier {
         return $this->supplier;
+    }
+
+    public function setPrice($price) {
+        $this->price = $price;
     }
 
     public function setProduct(Product $product) {
@@ -52,12 +61,22 @@ class SupplierProduct {
         }
 
         return $object->getProduct()->getId() == $this->getProduct()->getId() &&
-                $object->getSupplier()->getId() == $this->getSupplier()->getId();
+                $object->getSupplier()->getId() == $this->getSupplier()->getId() &&
+                $object->getPrice() == $this->getPrice();
     }
 
     public function __toString() {
         return "SupplierProduct {" . "product = '" . $this->getProduct() . '\''
-                . ", supplier = '" . $this->getSupplier() . '\'' . '}';
+                . ", supplier = '" . $this->getSupplier() . '\'' . ", price = "
+                . $this->getPrice() . '}';
+    }
+
+    public function jsonSerialize() {
+        return [
+            'product' => $this->getProduct(),
+            'supplier' => $this->getSupplier(),
+            'price' => $this->getPrice()
+        ];
     }
 
 }

@@ -7,25 +7,26 @@
  */
 
 /**
- * Description of SupplierPriceRepository
+ * Description of ProductValidityRepository
  *
  * @author edmilson.cassecasse
  * 
  * @createdOn 03-Jun-2021
  */
-class SupplierPriceRepository extends GenericRepository {
+class ValidityRepository extends GenericRepository {
 
     public function __construct() {
         parent::__construct();
     }
 
     public function deleteById($id) {
+
         $connection = $this->connect();
         $connection->autocommit(false);
         $connection->begin_transaction();
 
         try {
-            $sql = "DELETE FROM supplier_prices WHERE id = ?";
+            $sql = "DELETE FROM validities WHERE id = ?";
 
             $preparedStatement = $connection->prepare($sql);
             $preparedStatement->bind_param("i", $id);
@@ -33,12 +34,12 @@ class SupplierPriceRepository extends GenericRepository {
 
             $connection->commit();
 
-            $this->checkRows($preparedStatement->affected_rows, "Could not delete Price ID = " . $id);
+            $this->checkRows($preparedStatement->affected_rows, "Could not delete Validity ID = " . $id);
 
             return true;
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -49,7 +50,7 @@ class SupplierPriceRepository extends GenericRepository {
         $connection = $this->connect();
 
         try {
-            $sql = "SELECT * FROM supplier_prices";
+            $sql = "SELECT * FROM validities";
 
             $preparedStatement = $connection->prepare($sql);
             $preparedStatement->execute();
@@ -57,53 +58,52 @@ class SupplierPriceRepository extends GenericRepository {
             $result = $preparedStatement->get_result();
 
             if ($result->num_rows === 0) {
-                $prices = null;
+                $validities = null;
             }
 
-            $prices = array();
-            while ($price = $result->fetch_assoc()) {
-                array_push($prices, $price);
+            $validities = array();
+            while ($validity = $result->fetch_assoc()) {
+                array_push($validities, $validity);
             }
         } catch (mysqli_sql_exception $exception) {
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
 
-        return $prices;
+        return $validities;
     }
 
-    public function findByActiveDate(DateTime $activeDate) {
+    public function findByExpirationDate(DateTime $expirationDate) {
 
         $connection = $this->connect();
 
-        $datetime = date('Y-m-d H:i:s', $activeDate->getTimestamp());
+        $expireDate = date('Y-m-d H:i:s', $expirationDate->getTimestamp());
 
         try {
-            $sql = "SELECT * FROM supplier_prices WHERE entrance_date = ?";
+            $sql = "SELECT * FROM validities WHERE expiration_date = ?";
 
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("s", $datetime);
+            $preparedStatement->bind_param("s", $expireDate);
             $preparedStatement->execute();
 
             $result = $preparedStatement->get_result();
 
             if ($result->num_rows === 0) {
-                $prices = null;
+                $validities = null;
             }
 
-            $prices = array();
-            
-            while ($price = $result->fetch_assoc()) {
-                array_push($prices, $price);
+            $validities = array();
+            while ($validity = $result->fetch_assoc()) {
+                array_push($validities, $validity);
             }
         } catch (mysqli_sql_exception $exception) {
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
 
-        return $prices;
+        return $validities;
     }
 
     public function findById($id) {
@@ -111,7 +111,7 @@ class SupplierPriceRepository extends GenericRepository {
         $connection = $this->connect();
 
         try {
-            $sql = "SELECT * FROM supplier_prices WHERE id = ?";
+            $sql = "SELECT * FROM validities WHERE id = ?";
 
             $preparedStatement = $connection->prepare($sql);
             $preparedStatement->bind_param("i", $id);
@@ -120,49 +120,48 @@ class SupplierPriceRepository extends GenericRepository {
             $result = $preparedStatement->get_result();
 
             if ($result->num_rows === 0) {
-                $price = null;
+                $validity = null;
             }
 
-            $price = $result->fetch_assoc();
+            $validity = $result->fetch_assoc();
         } catch (mysqli_sql_exception $exception) {
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
 
-        return $price;
+        return $validity;
     }
 
-    public function findBySupplier(Supplier $supplier) {
+    public function findByProduct(Product $product) {
 
         $connection = $this->connect();
+        $productId = $product->getId();
 
-        $supplierId = $supplier->getId();
-        
         try {
-            $sql = "SELECT * FROM supplier_prices WHERE supplier_id = ?";
+            $sql = "SELECT * FROM validities WHERE product_id = ?";
 
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("i", $supplierId);
+            $preparedStatement->bind_param("i", $productId);
             $preparedStatement->execute();
 
             $result = $preparedStatement->get_result();
 
             if ($result->num_rows === 0) {
-                $supplierPrices = null;
+                $product_validities = null;
             }
 
-            $supplierPrices = array();
-            while ($price = $result->fetch_assoc()) {
-                array_push($supplierPrices, $price);
+            $product_validities = array();
+            while ($validity = $result->fetch_assoc()) {
+                array_push($product_validities, $validity);
             }
         } catch (mysqli_sql_exception $exception) {
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
 
-        return $supplierPrices;
+        return $product_validities;
     }
 
     public function insert($object) {
@@ -171,36 +170,35 @@ class SupplierPriceRepository extends GenericRepository {
         $connection->autocommit(false);
         $connection->begin_transaction();
 
-        if (!($object instanceof SupplierPrice)) {
-            return "Unexpected type passed as param, while waiting to receive "
-                    . "SupplierPrice instance!";
+        if (!($object instanceof Validity)) {
+            return "Unexpected type passed as param, while waiting to receive"
+                    . " a Validity instance!";
         }
 
         $productId = $object->getProduct()->getId();
-        $supplierId = $object->getSupplier()->getId();
-        $price = $object->getPrice();
-        $entranceDate = date('Y-m-d H:i:s', $object->getActiveDate()->getTimestamp());
+        $expirationDate = date('Y-m-d H:i:s', $object->getExpirationDate()->getTimestamp());
+        $quantity = $object->getQuantity();
 
         try {
-            $sql = "INSERT INTO supplier_prices";
-            $sql .= "(product_id, supplier_id, price, entrance_date) VALUES ";
-            $sql .= "(?,?,?,?)";
+            $sql = "INSERT INTO validities ";
+            $sql .= "(product_id, expiration_date, quantity) ";
+            $sql .= "VALUES (?,?,?)";
 
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("iids", $productId, $supplierId, $price, $entranceDate);
+            $preparedStatement->bind_param("isd", $productId, $expirationDate, $quantity);
             $preparedStatement->execute();
 
             $connection->commit();
 
-            $supplierPrice = $this->getInsertion($preparedStatement->insert_id);
+            $validity = $this->getInsertion($preparedStatement->insert_id);
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
-            throw new Exception($exception);
+            throw $exception;
         } finally {
             $preparedStatement->close();
         }
 
-        return $supplierPrice;
+        return $validity;
     }
 
     public function update($object) {
@@ -209,41 +207,39 @@ class SupplierPriceRepository extends GenericRepository {
         $connection->autocommit(false);
         $connection->begin_transaction();
 
-        if (!($object instanceof SupplierPrice)) {
+        if (!($object instanceof Validity)) {
             return "Unexpected type passed as param, while waiting to receive "
-                    . "SupplierPrice instance";
+                    . "Validity instance";
         }
 
         $id = $object->getId();
         $productId = $object->getProduct()->getId();
-        $supplierId = $object->getSupplier()->getId();
-        $price = $object->getPrice();
-        $entranceDate = date('Y-m-d H:i:s', 
-                $object->getActiveDate()->getTimestamp());
+        $expirationDate = date('Y-m-d H:i:s', $object->getExpirationDate()->getTimestamp());
+        $quantity = $object->getQuantity();
 
         try {
-            $sql = "UPDATE supplier_prices SET price = ?, entrance_date = ? ";
-            $sql .= "WHERE id = ? AND product_id = ? AND supplier_id = ?";
+            $sql = "UPDATE validities SET expiration_date = ?, ";
+            $sql .= "quantity = ?, product_id = ? WHERE id = ?";
 
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("dsiii", $price, $entranceDate, $id, $productId, $supplierId);
+            $preparedStatement->bind_param("sdii", $expirationDate, $quantity, $productId, $id);
             $preparedStatement->execute();
 
             $connection->commit();
 
             if ($preparedStatement->affected_rows === 0) {
-                $supplierPrice = null;
+                $validity = null;
             }
 
-            $supplierPrice = $this->findById($object->getId());
+            $validity = $this->findById($object->getId());
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
 
-        return $supplierPrice;
+        return $validity;
     }
 
 }

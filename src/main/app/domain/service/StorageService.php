@@ -15,19 +15,19 @@
  */
 class StorageService {
 
-    private $storageRepository;
+    private $repository;
     private $storedProductRepository;
     private $productService;
 
     public function __construct() {
-        $this->storageRepository = new StorageRepository();
+        $this->repository = new StorageRepository();
         $this->storedProductRepository = new StoredProductRepository();
         $this->productService = new ProductService();
     }
 
     public function insert(Storage $storage): Storage {
 
-        $found = $this->toStorage($this->storageRepository->
+        $found = $this->toStorage($this->repository->
                         findByCode($storage->getCode()));
 
         if (($found !== null) && ($found->equals($storage))) {
@@ -35,16 +35,16 @@ class StorageService {
             . "given code");
         }
 
-        return $this->toStorage($this->storageRepository->insert($storage));
+        return $this->toStorage($this->repository->insert($storage));
     }
 
     public function findAll(): array {
         $storages = array();
 
-        if ($this->storageRepository->findAll() == null) {
+        if ($this->repository->findAll() == null) {
             throw new EntityNotFoundException("Could not find any storage!");
         } else {
-            foreach ($this->storageRepository->findAll() as $value) {
+            foreach ($this->repository->findAll() as $value) {
                 array_push($storages, $this->toStorage($value));
             }
         }
@@ -54,11 +54,11 @@ class StorageService {
 
     public function findById(int $id): Storage {
 
-        $db_storage = $this->storageRepository->findById($id);
+        $db_storage = $this->repository->findById($id);
 
         if ($db_storage == null) {
-            throw new EntityNotFoundException("Could not find storage ID = "
-            . $id);
+            throw new EntityNotFoundException("Could not find storage with the "
+            . "given ID");
         }
         return $this->toStorage($db_storage);
     }
@@ -70,65 +70,178 @@ class StorageService {
         $found->setDesignation($storage->getDesignation());
         $found->setCode($storage->getCode());
 
-        return $this->toStorage($this->storageRepository->update($found));
+        return $this->toStorage($this->repository->update($found));
     }
 
     public function deleteById(int $id) {
-        return $this->storageRepository->deleteById($id);
+        return $this->repository->deleteById($id);
     }
 
-    public function store(StoredProduct $storedProduct): StoredProduct {
-
-        $product = $this->findProduct($storedProduct->getProduct()->getId());
+    public function addProduct(StoredProduct $storedProduct) {
         $storage = $this->find($storedProduct->getStorage()->getId());
-
-        $found = $this->toStoredProduct(
-                $this->storedProductRepository->findById(
-                        $storedProduct->getProduct()->getId()));
-
-        if (($found !== null) && ($found->equals($storedProduct))) {
-            throw new BusinessException("This product is already stored in this "
-            . "storage");
-        }
+        $product = $this->productService->findByID($storedProduct->getProduct()->getId());
 
         $storedProduct->setProduct($product);
         $storedProduct->setStorage($storage);
+
+        $founds = $this->storedProductRepository->findOnStorage($storedProduct);
+
+        foreach ($founds as $found) {
+            $fnd = $this->toStoredProduct($found);
+
+            if (($fnd != null) && ($fnd->equals($storedProduct))) {
+                throw new BusinessException("The given product already exists on "
+                . "this storage");
+            }
+        }
 
         return $this->toStoredProduct(
                         $this->storedProductRepository->insert($storedProduct));
     }
 
-    public function listStoredProducts(int $storageId): array {
+    public function listProducts(Storage $storage) {
+
+        $foundedStorage = $this->find($storage->getId());
+
+        $storedProduct = new StoredProduct();
+        $storedProduct->setStorage($foundedStorage);
+
+        $founds = $this->storedProductRepository->findByStorage($storedProduct);
+
+        if ($founds == null) {
+            throw new EntityNotFoundException("Could not find any product at "
+            . "this storage");
+        }
+
         $products = array();
 
-        $storage = $this->find($storageId);
-
-        $db_storedProducts = $this->storedProductRepository->
-                findByStorage($storage);
-        if ($db_storedProducts == null) {
-            throw new EntityNotFoundException("Storage ID = " . $storage->getId()
-            . " does not have products!");
-        } else {
-            foreach ($db_storedProducts as $value) {
-                array_push($products, $this->toStoredProduct($value));
-            }
+        foreach ($founds as $product) {
+            array_push($products, $this->toStoredProduct($product));
         }
 
         return $products;
     }
 
-    public function unstore(StoredProduct $storedProduct): StoredProduct {
-        $found = $this->toStoredProduct(
-                $this->storedProductRepository->findById(
-                        $storedProduct->getProduct()->getId()));
+    public function updateProduct(StoredProduct $storedProduct) {
 
-        if (is_null($found)) {
-            throw new EntityNotFoundException("Cannot unstore a product that is"
-            . " not stored");
+        $product = $this->productService->findByID(
+                $storedProduct->getProduct()->getId());
+
+        $storage = $this->find($storedProduct->getStorage()->getId());
+
+        $found = $this->toStoredProduct($this->storedProductRepository->findOnStorage($storedProduct));
+
+        if ($found == null) {
+            throw new EntityNotFoundException("Could not find this product on "
+            . "the given storage");
         }
 
-        return $this->toStoredProduct(
-                        $this->storedProductRepository->update($storedProduct));
+        $found->setProduct($product);
+        $found->setStorage($storage);
+        $found->setQuantity($storedProduct->getQuantity());
+
+        return $this->toStoredProduct($this->storedProductRepository->update($found));
+    }
+
+    public function removeProduct(StoredProduct $storedProduct) {
+
+        $this->productService->findByID($storedProduct->getProduct()->getId());
+
+        $this->find($storedProduct->getStorage()->getId());
+
+        $found = $this->toStoredProduct(
+                $this->storedProductRepository->findOnStorage($storedProduct));
+
+
+
+        if ($found == null) {
+            throw new EntityNotFoundException("Could not find such product on "
+            . "this storage");
+        }
+
+        return $this->storedProductRepository->deleteFromStorage($found);
+    }
+
+    public function transferProduct(StoredProduct $from, StoredProduct $to) {
+
+        $existant_source_product = $this->productService->findByID(
+                $from->getProduct()->getId());
+
+        $existant_destination_product = $this->productService->findByID(
+                $to->getProduct()->getId());
+
+        $existant_source_storage = $this->find($from->getStorage()->getId());
+
+        $existant_destination_storage = $this->find($to->getStorage()->getId());
+
+        //Verify if the product that are is trying to transfer is the same
+        //OBS: Product from source and destination must be the same
+        if (!$existant_source_product->equals($existant_destination_product)) {
+            throw new BusinessException("You can only transfer the same type of "
+            . "product");
+        }
+
+        //Verify if the storages are the same.
+        //OBS: Source storage and destination must be diferent
+        if ($existant_source_storage->equals($existant_destination_storage)) {
+            throw new BusinessException("The source storage and destination "
+            . "storage are the same");
+        }
+
+        $existant_product_on_source = $this->toStoredProduct(
+                $this->storedProductRepository->findOnStorage($from));
+
+        //Verify if the product that is trying to transfer exists on source
+        if ($existant_product_on_source == null) {
+            throw new BusinessException("Tried to transfer a product that "
+            . "doesn't exist on source storage!");
+        }
+
+        $existant_product_on_destination = $this->toStoredProduct(
+                $this->storedProductRepository->findOnStorage($to));
+
+        if ($existant_product_on_source->getQuantity() < $from->getQuantity()) {
+            throw new BusinessException("The amount you are trying to transfer "
+            . "is greater than what exists on the storage");
+        }
+
+        if ($existant_product_on_destination == null) {
+
+            $to->setProduct($existant_source_product);
+            $to->setStorage($existant_destination_storage);
+            $to->setQuantity($from->getQuantity());
+
+            $from->setProduct($existant_source_product);
+            $from->setStorage($existant_source_storage);
+
+            $quantity = $existant_product_on_source->getQuantity() -
+                    $from->getQuantity();
+
+            $from->setQuantity($quantity);
+
+            $this->storedProductRepository->update($from);
+
+            return $this->toStoredProduct($this->
+                            storedProductRepository->insert($to));
+        } else {
+
+            $to->setProduct($existant_destination_product);
+            $to->setStorage($existant_destination_storage);
+            $destination_quantity = $existant_product_on_destination->
+                            getQuantity() + $from->getQuantity();
+            $to->setQuantity($destination_quantity);
+
+            $from->setProduct($existant_source_product);
+            $from->setStorage($existant_source_storage);
+            $source_quantity = $existant_product_on_source->
+                            getQuantity() - $from->getQuantity();
+            $from->setQuantity($source_quantity);
+
+            $this->storedProductRepository->update($from);
+
+            return $this->toStoredProduct($this->
+                            storedProductRepository->update($to));
+        }
     }
 
     public function toStoredProduct($database_result) {
@@ -169,17 +282,6 @@ class StorageService {
 
     private function find(int $id): Storage {
         return $this->findById($id);
-    }
-
-    private function findProduct(int $id): Product {
-        $product = $this->productService->findByID($id);
-
-        if (is_null($product)) {
-            throw new EntityNotFoundException("Could not find product ID = "
-            . $id);
-        }
-
-        return $product;
     }
 
 }

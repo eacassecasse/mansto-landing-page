@@ -11,7 +11,7 @@
  *
  * @author edmilson.cassecasse
  */
-class StoredProduct {
+class StoredProduct implements JsonSerializable {
 
     private $quantity;
     private $product;
@@ -25,11 +25,11 @@ class StoredProduct {
         return $this->quantity;
     }
 
-    public function getProduct() {
+    public function getProduct(): Product {
         return $this->product;
     }
 
-    public function getStorage() {
+    public function getStorage(): Storage {
         return $this->storage;
     }
 
@@ -67,6 +67,14 @@ class StoredProduct {
         return "StoredProduct {" . "Product = '" . $this->getProduct() . '\''
                 . ", Storage = '" . $this->getStorage() . '\'' . ", Quantity = "
                 . $this->getQuantity() . '}';
+    }
+
+    public function jsonSerialize() {
+        return [
+            'product' => $this->getProduct(),
+            'storage' => $this->getStorage(),
+            'quantity' => $this->getQuantity()
+        ];
     }
 
 }

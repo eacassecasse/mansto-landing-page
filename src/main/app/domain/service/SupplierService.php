@@ -15,35 +15,33 @@
  */
 class SupplierService {
 
-    private $supplierRepository;
-    private $supplierPriceRepository;
+    private $repository;
     private $supplierProductRepository;
     private $productService;
 
     public function __construct() {
-        $this->supplierRepository = new SupplierRepository();
-        $this->supplierPriceRepository = new SupplierPriceRepository();
+        $this->repository = new SupplierRepository();
         $this->supplierProductRepository = new SupplierProductRepository();
         $this->productService = new ProductService();
     }
 
     public function insert(Supplier $supplier): Supplier {
 
-        $found = $this->toSupplier($this->supplierRepository->
-                        findByName($supplier->getName()));
+        $found = $this->toSupplier($this->repository->
+                        findByVatNumber($supplier->getVatNumber()));
 
         if (($found !== null) && ($found->equals($supplier))) {
             throw new BusinessException("Already exists a supplier with the "
-            . "given name");
+            . "given vatNumber");
         }
 
-        return $this->toSupplier($this->supplierRepository->insert($supplier));
+        return $this->toSupplier($this->repository->insert($supplier));
     }
 
     public function findAll(): array {
         $suppliers = array();
 
-        $db_suppliers = $this->supplierRepository->findAll();
+        $db_suppliers = $this->repository->findAll();
 
         if ($db_suppliers == null) {
             throw new EntityNotFoundException("Could not find any supplier!");
@@ -57,11 +55,11 @@ class SupplierService {
     }
 
     public function findById(int $id): Supplier {
-        $db_supplier = $this->supplierRepository->findById($id);
+        $db_supplier = $this->repository->findById($id);
 
         if ($db_supplier == null) {
-            throw new EntityNotFoundException("Could not find supplier ID = "
-            . $id);
+            throw new EntityNotFoundException("Could not find supplier with the "
+            . "given ID");
         }
 
         return $this->toSupplier($db_supplier);
@@ -74,173 +72,94 @@ class SupplierService {
         $found->setId($supplier->getId());
         $found->setName($supplier->getName());
 
-        return $this->toSupplier($this->supplierRepository->update($found));
+        return $this->toSupplier($this->repository->update($found));
     }
 
     public function deleteById(int $id) {
-        return $this->supplierRepository->deleteById($id);
+        return $this->repository->deleteById($id);
     }
 
-    public function addProduct(SupplierProduct $product): SupplierProduct {
+    public function addProduct(SupplierProduct $supplierProduct) {
 
-        $prod = $this->findProduct($product->getProduct()->getId());
-        $supplier = $this->find($product->getSupplier()->getId());
+        $product = $this->findProduct($supplierProduct->getProduct()->getId());
 
-        $found = $this->supplierProductRepository->findById($prod->getId());
+        $supplier = $this->find($supplierProduct->getSupplier()->getId());
 
-        if (!is_null($found)) {
-            foreach ($found as $value) {
-                $sProduct = $this->toSupplierProduct($value);
+        $found = $this->toSupplierProduct($this->
+                supplierProductRepository->findFromSupplier($supplierProduct));
 
-                if (($sProduct !== null) && ($sProduct->equals($product))) {
-                    throw new BusinessException("This product is already "
-                    . "associated with this supplier");
-                }
-            }
+        if (($found != null) && ($found->equals($supplierProduct))) {
+            throw new BusinessException("The product has already been added to "
+            . "this supplier!");
         }
 
-        $product->setProduct($prod);
-        $product->setSupplier($supplier);
+        $supplierProduct->setProduct($product);
+        $supplierProduct->setSupplier($supplier);
 
-        return $this->toSupplierProduct(
-                        $this->supplierProductRepository->insert($product));
+        return $this->toSupplierProduct($this->
+                        supplierProductRepository->insert($supplierProduct));
     }
 
-    public function listProducts(Supplier $supplier): array {
+    public function listProducts(Supplier $supplier) {
+
+        $foundedSupplier = $this->find($supplier->getId());
+
+        $supplierProduct = new SupplierProduct();
+        $supplierProduct->setSupplier($supplier);
+
+        $founds = $this->supplierProductRepository->findBySupplier($supplierProduct);
+
+        if ($founds == null) {
+            throw new EntityNotFoundException("Could not find any product of "
+            . "this supplier");
+        }
 
         $products = array();
 
-        $found = $this->find($supplier->getId());
-
-        $db_supplierProducts = $this->supplierProductRepository->
-                findBySupplier($found);
-
-
-        if ($db_supplierProducts == null) {
-            throw new EntityNotFoundException("Supplier ID = "
-            . $found->getId() . " does not have product list yet!");
-        } else {
-            foreach ($db_supplierProducts as $value) {
-                array_push($products, $this->toSupplierProduct($value));
-            }
+        foreach ($founds as $found) {
+            array_push($products, $this->toSupplierProduct($found));
         }
 
         return $products;
     }
 
-    public function editProduct(SupplierProduct $product): SupplierProduct {
+    public function updateProduct(SupplierProduct $supplierProduct) {
 
-        $found = $this->toSupplierProduct(
-                $this->supplierProductRepository->findById(
-                        $product->getProduct()->getId()));
+        $product = $this->findProduct($supplierProduct->getProduct()->getId());
+        $supplier = $this->find($supplierProduct->getSupplier()->getId());
 
-        if (is_null($found)) {
-            throw new BusinessException("Cannot edit a product that doesn't "
-            . "exist!");
+        $found = $this->toSupplierProduct($this->
+                supplierProductRepository->findFromSupplier($supplierProduct));
+
+        if ($found == null) {
+            throw new EntityNotFoundException("Could not find this product on "
+            . "the given supplier");
         }
 
-        $found->setProduct($product->getProduct());
-        $found->setSupplier($product->getSupplier());
+        $found->setProduct($product);
+        $found->setSupplier($supplier);
+        $found->setPrice($supplierProduct->getPrice());
 
-        return $this->toSupplierProduct(
-                        $this->supplierProductRepository->update($found));
+        return $this->toSupplierProduct($this->
+                        supplierProductRepository->update($found));
     }
 
-    public function addProductPrice(SupplierPrice $price): SupplierPrice {
+    public function removeProduct(SupplierProduct $supplierProduct) {
+        $this->findProduct($supplierProduct->getProduct()->getId());
+        $this->find($supplierProduct->getSupplier()->getId());
 
-        $product = $this->findProduct($price->getProduct()->getId());
-        $supplier = $this->find($price->getSupplier()->getId());
+        $found = $this->toSupplierProduct($this->
+                supplierProductRepository->findFromSupplier($supplierProduct));
 
-
-        $found = $this->supplierPriceRepository->
-                findByActiveDate($price->getActiveDate());
-
-        if (!is_null($found)) {
-
-            foreach ($found as $value) {
-                $prc = $this->toSupplierPrice($value);
-
-                if (($prc !== null) && ($prc->equals($price))) {
-                    throw new BusinessException("Already exists a price with "
-                    . "given entrance date!");
-                }
-            }
+        if ($found == null) {
+            throw new EntityNotFoundException("Could not find such product from "
+            . "this supplier");
         }
 
-        $price->setProduct($product);
-        $price->setSupplier($supplier);
-
-        return $this->toSupplierPrice(
-                        $this->supplierPriceRepository->insert($price));
+        return $this->supplierProductRepository->deleteFromSupplier($found);
     }
 
-    public function listPrices(Supplier $supplier): array {
-        $prices = array();
-        $found = $this->find($supplier->getId());
-        $db_supplierPrices = $this->supplierPriceRepository->
-                findBySupplier($found);
-
-
-        if ($db_supplierPrices == null) {
-            throw new EntityNotFoundException("Supplier ID = "
-            . $found->getId() . " does not have price list yet!");
-        } else {
-            foreach ($db_supplierPrices as $value) {
-                array_push($prices, $this->toSupplierPrice($value));
-            }
-        }
-
-        return $prices;
-    }
-
-    public function editPrice(SupplierPrice $price): SupplierPrice {
-
-        $found = $this->toSupplierPrice(
-                $this->supplierPriceRepository->findById($price->getId()));
-
-        if (is_null($found)) {
-            throw new BusinessException("Cannot edit a price that doesn't "
-            . "exist!");
-        }
-
-        $found->setId($price->getId());
-        $found->setProduct($price->getProduct());
-        $found->setSupplier($price->getSupplier());
-        $found->setPrice($price->getPrice());
-        $found->setActiveDate($price->getActiveDate());
-
-        return $this->toSupplierPrice(
-                        $this->supplierPriceRepository->update($price));
-    }
-
-    public function toSupplierPrice($database_result) {
-
-        if ($database_result == null) {
-            $supplierPrice = null;
-        } else {
-            $supplierPrice = new SupplierPrice();
-
-            if (!empty($database_result)) {
-                $supplierPrice->setId($database_result['id']);
-                $supplierPrice->setPrice($database_result['price']);
-
-                //Setting Active Date
-                $activeDate = new DateTime();
-                $activeDate->setTimestamp(
-                        strtotime($database_result['entrance_date']));
-
-                $supplierPrice->setActiveDate($activeDate);
-                $supplierPrice->setProduct(
-                        $this->findProduct($database_result['product_id']));
-                $supplierPrice->setSupplier($this->
-                                findById($database_result['supplier_id']));
-            }
-        }
-
-        return $supplierPrice;
-    }
-
-    public function toSupplierProduct($database_result) {
+    private function toSupplierProduct($database_result) {
 
         if ($database_result == null) {
             $supplierProduct = null;
@@ -252,6 +171,7 @@ class SupplierService {
                         $this->findProduct($database_result['product_id']));
                 $supplierProduct->setSupplier(
                         $this->findById($database_result['supplier_id']));
+                $supplierProduct->setPrice($database_result['price']);
             }
         }
 
@@ -268,6 +188,7 @@ class SupplierService {
             if (!empty($database_result)) {
                 $supplier->setId($database_result['id']);
                 $supplier->setName($database_result['name']);
+                $supplier->setVatNumber($database_result['vatNumber']);
             }
         }
 

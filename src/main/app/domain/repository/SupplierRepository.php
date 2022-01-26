@@ -39,7 +39,7 @@ class SupplierRepository extends GenericRepository {
             return true;
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -66,7 +66,7 @@ class SupplierRepository extends GenericRepository {
                 array_push($suppliers, $supplier);
             }
         } catch (mysqli_sql_exception $exception) {
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -93,7 +93,34 @@ class SupplierRepository extends GenericRepository {
 
             $supplier = $result->fetch_assoc();
         } catch (mysqli_sql_exception $exception) {
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
+        } finally {
+            $preparedStatement->close();
+        }
+
+        return $supplier;
+    }
+
+    public function findByVatNumber($vatNumber) {
+
+        $connection = $this->connect();
+
+        try {
+            $sql = "SELECT * FROM supplier WHERE vatNumber = ?";
+
+            $preparedStatement = $connection->prepare($sql);
+            $preparedStatement->bind_param("i", $vatNumber);
+            $preparedStatement->execute();
+
+            $result = $preparedStatement->get_result();
+
+            if ($result->num_rows === 0) {
+                $supplier = null;
+            }
+
+            $supplier = $result->fetch_assoc();
+        } catch (mysqli_sql_exception $exception) {
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -120,7 +147,7 @@ class SupplierRepository extends GenericRepository {
 
             $supplier = $result->fetch_assoc();
         } catch (mysqli_sql_exception $exception) {
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -140,25 +167,26 @@ class SupplierRepository extends GenericRepository {
         }
 
         $name = $object->getName();
+        $vatNumber = $object->getVatNumber();
 
         try {
-            $sql = "INSERT INTO supplier (name) VALUES (?)";
+            $sql = "INSERT INTO supplier (name, vatNumber) VALUES (?,?)";
 
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("s", $name);
+            $preparedStatement->bind_param("si", $name, $vatNumber);
             $preparedStatement->execute();
 
             $connection->commit();
 
-            $product = $this->getInsertion($preparedStatement->insert_id);
+            $supplier = $this->getInsertion($preparedStatement->insert_id);
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
 
-        return $product;
+        return $supplier;
     }
 
     public function update($object) {
@@ -174,12 +202,13 @@ class SupplierRepository extends GenericRepository {
 
         $id = $object->getId();
         $name = $object->getName();
+        $vatNumber = $object->getVatNumber();
 
         try {
-            $sql = "UPDATE supplier SET name = ? WHERE id = ? ";
+            $sql = "UPDATE supplier SET name = ?, vatNumber = ? WHERE id = ? ";
 
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("si", $name, $id);
+            $preparedStatement->bind_param("sii", $name, $vatNumber, $id);
             $preparedStatement->execute();
 
             $connection->commit();
@@ -191,7 +220,7 @@ class SupplierRepository extends GenericRepository {
             $supplier = $this->findById($object->getId());
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }

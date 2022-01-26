@@ -40,7 +40,7 @@ class StorageRepository extends GenericRepository {
             return true;
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -67,7 +67,7 @@ class StorageRepository extends GenericRepository {
                 array_push($storages, $storage);
             }
         } catch (mysqli_sql_exception $exception) {
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -94,7 +94,7 @@ class StorageRepository extends GenericRepository {
 
             $storage = $result->fetch_assoc();
         } catch (mysqli_sql_exception $exception) {
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -121,7 +121,7 @@ class StorageRepository extends GenericRepository {
 
             $storage = $result->fetch_assoc();
         } catch (mysqli_sql_exception $exception) {
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -155,7 +155,7 @@ class StorageRepository extends GenericRepository {
             $storage = $this->getInsertion($preparedStatement->insert_id);
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -195,7 +195,7 @@ class StorageRepository extends GenericRepository {
             $storage = $this->findById($object->getId());
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }

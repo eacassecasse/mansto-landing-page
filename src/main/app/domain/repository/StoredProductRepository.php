@@ -13,28 +13,99 @@
  * 
  * @createdOn 03-Jun-2021
  */
-class StoredProductRepository extends GenericRepository {
+class StoredProductRepository {
+
+    private $factory;
 
     public function __construct() {
-        parent::__construct();
+        $this->factory = new ConnectionFactory();
     }
 
-    public function deleteById($id) {
+    private function connect(): mysqli {
+
+        $connection = $this->factory->build();
+
+        if ($connection->connect_errno) {
+
+            throw new ConnectionException("An Error occured when trying to "
+            . "connect to database. \n"
+            . "Please contact your Administrator");
+        }
+
+        return $connection;
+    }
+
+    private function getInsertion(int $inserted_product_id, int $inserted_storage_id) {
+        $product = new Product();
+        $product->setId($inserted_product_id);
+
+        $storage = new Storage();
+        $storage->setId($inserted_storage_id);
+
+        $stored = new StoredProduct();
+        $stored->setProduct($product);
+        $stored->setStorage($storage);
+
+        return $this->findOnStorage($stored);
+    }
+
+    private function checkRows(int $size, string $message) {
+        if ($size === 0) {
+            throw new Exception($message);
+        }
+    }
+
+    public function deleteByProduct(StoredProduct $storedProduct) {
 
         $connection = $this->connect();
         $connection->autocommit(false);
         $connection->begin_transaction();
 
+        $productId = $storedProduct->getProduct()->getId();
+
         try {
             $sql = "DELETE FROM stored_products WHERE product_id = ?";
 
+
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("i", $id);
+            $preparedStatement->bind_param("i", $productId);
             $preparedStatement->execute();
 
             $connection->commit();
 
-            $this->checkRows($preparedStatement->affected_rows, "Could not delete Stored Product ID = " . $id);
+            $this->checkRows($preparedStatement->affected_rows, "Could not delete Stored Product ID = " . $productId);
+
+            return true;
+        } catch (mysqli_sql_exception $exception) {
+            $connection->rollback();
+            throw new Exception($exception);
+        } finally {
+            $preparedStatement->close();
+        }
+    }
+
+    public function deleteFromStorage(StoredProduct $storedProduct) {
+
+        $connection = $this->connect();
+        $connection->autocommit(false);
+        $connection->begin_transaction();
+
+        $productId = $storedProduct->getProduct()->getId();
+        $storageId = $storedProduct->getStorage()->getId();
+
+        try {
+            $sql = "DELETE FROM stored_products WHERE product_id = ? AND storage_id = ?";
+
+
+            $preparedStatement = $connection->prepare($sql);
+            $preparedStatement->bind_param("ii", $productId, $storageId);
+            $preparedStatement->execute();
+
+            $connection->commit();
+
+            $this->checkRows($preparedStatement->affected_rows, "Could not "
+                    . "delete Stored Product ID = " . $productId
+                    . " From Storage ID = " . $storageId);
 
             return true;
         } catch (mysqli_sql_exception $exception) {
@@ -74,15 +145,16 @@ class StoredProductRepository extends GenericRepository {
         return $storedProducts;
     }
 
-    public function findById($id) {
+    public function findByProduct(StoredProduct $stoProduct) {
 
         $connection = $this->connect();
+        $productId = $stoProduct->getProduct()->getId();
 
         try {
             $sql = "SELECT * FROM stored_products WHERE product_id = ?";
 
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("i", $id);
+            $preparedStatement->bind_param("i", $productId);
             $preparedStatement->execute();
 
             $result = $preparedStatement->get_result();
@@ -100,11 +172,11 @@ class StoredProductRepository extends GenericRepository {
         return $storedProduct;
     }
 
-    public function findByStorage(Storage $storage) {
+    public function findByStorage(StoredProduct $stoProduct) {
 
         $connection = $this->connect();
 
-        $storageId = $storage->getId();
+        $storageId = $stoProduct->getStorage()->getId();
         try {
             $sql = "SELECT * FROM stored_products WHERE storage_id = ?";
 
@@ -128,6 +200,35 @@ class StoredProductRepository extends GenericRepository {
             $preparedStatement->close();
         }
         return $storedProducts;
+    }
+
+    public function findOnStorage(StoredProduct $stoProduct) {
+
+        $connection = $this->connect();
+
+        $productId = $stoProduct->getProduct()->getId();
+        $storageId = $stoProduct->getStorage()->getId();
+
+        try {
+            $sql = "SELECT * FROM stored_products WHERE product_id = ? AND storage_id = ?";
+
+            $preparedStatement = $connection->prepare($sql);
+            $preparedStatement->bind_param("ii", $productId, $storageId);
+            $preparedStatement->execute();
+
+            $result = $preparedStatement->get_result();
+
+            if ($result->num_rows === 0) {
+                $storedProduct = null;
+            }
+
+            $storedProduct = $result->fetch_assoc();
+        } catch (mysqli_sql_exception $exception) {
+            throw new Exception($exception);
+        } finally {
+            $preparedStatement->close();
+        }
+        return $storedProduct;
     }
 
     public function insert($object) {
@@ -155,7 +256,7 @@ class StoredProductRepository extends GenericRepository {
 
             $connection->commit();
 
-            $storedProduct = $this->getInsertion($productId);
+            $storedProduct = $this->getInsertion($productId, $storageId);
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
             throw new Exception($exception);
@@ -182,20 +283,20 @@ class StoredProductRepository extends GenericRepository {
         $quantity = $object->getQuantity();
 
         try {
-            $sql = "UPDATE stored_products SET quantity = ?, storage_id = ? ";
-            $sql .= "WHERE product_id = ?";
+            $sql = "UPDATE stored_products SET quantity = ? ";
+            $sql .= "WHERE product_id = ? AND storage_id = ?";
 
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("dii", $quantity, $storageId, $productId);
+            $preparedStatement->bind_param("dii", $quantity, $productId, $storageId);
             $preparedStatement->execute();
 
             $connection->commit();
 
             if ($preparedStatement->affected_rows === 0) {
-               $storedProduct = null; 
+                $storedProduct = null;
             }
-            
-            $storedProduct = $this->findById($productId);
+
+            $storedProduct = $this->findOnStorage($object);
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
             throw new Exception($exception);

@@ -35,13 +35,12 @@ class ProductRepository extends GenericRepository {
 
             $connection->commit();
 
-            $this->checkRows($preparedStatement->affected_rows, 
-                    "Could not deleted product ID = " . $id);
+            $this->checkRows($preparedStatement->affected_rows, "Could not deleted product ID = " . $id);
 
             return true;
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -64,13 +63,12 @@ class ProductRepository extends GenericRepository {
             }
 
             $products = array();
-            
+
             while ($product = $result->fetch_assoc()) {
                 array_push($products, $product);
             }
-            
         } catch (mysqli_sql_exception $exception) {
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -78,15 +76,15 @@ class ProductRepository extends GenericRepository {
         return $products;
     }
 
-    public function findByDesignation(string $designation) {
+    public function findByDescription(string $description) {
 
         $connection = $this->connect();
 
         try {
-            $sql = "SELECT * FROM product WHERE designation = ?";
+            $sql = "SELECT * FROM product WHERE description = ?";
 
             $preparedStatement = $connection->prepare($sql);
-            $preparedStatement->bind_param("s", $designation);
+            $preparedStatement->bind_param("s", $description);
             $preparedStatement->execute();
 
             $result = $preparedStatement->get_result();
@@ -97,7 +95,7 @@ class ProductRepository extends GenericRepository {
 
             $product = $result->fetch_assoc();
         } catch (mysqli_sql_exception $exception) {
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -124,7 +122,7 @@ class ProductRepository extends GenericRepository {
 
             $product = $result->fetch_assoc();
         } catch (mysqli_sql_exception $exception) {
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -143,14 +141,14 @@ class ProductRepository extends GenericRepository {
                     . " a Product instance!";
         }
 
-        $designation = $object->getDesignation();
+        $designation = $object->getDescription();
         $unit = $object->getUnit();
-        $price = $object->getPrice();
+        $price = $object->getLowestPrice();
         $totalQuantity = $object->getTotalQuantity();
 
         try {
             $sql = "INSERT INTO product ";
-            $sql .= "(designation, measure_unit, price, current_totalQuantity) ";
+            $sql .= "(description, measure_unit, lowest_price, total_quantity) ";
             $sql .= "VALUES (?,?,?,?)";
 
             $preparedStatement = $connection->prepare($sql);
@@ -162,7 +160,7 @@ class ProductRepository extends GenericRepository {
             $product = $this->getInsertion($preparedStatement->insert_id);
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
@@ -182,14 +180,14 @@ class ProductRepository extends GenericRepository {
         }
 
         $id = $object->getId();
-        $designation = $object->getDesignation();
+        $designation = $object->getDescription();
         $unit = $object->getUnit();
-        $price = $object->getPrice();
+        $price = $object->getLowestPrice();
         $totalQuantity = $object->getTotalQuantity();
 
         try {
-            $sql = "UPDATE product SET designation = ?, measure_unit = ?, ";
-            $sql .= "price = ?, current_totalQuantity = ? WHERE id = ?";
+            $sql = "UPDATE product SET description = ?, measure_unit = ?, ";
+            $sql .= "lowest_price = ?, total_quantity = ? WHERE id = ?";
 
             $preparedStatement = $connection->prepare($sql);
             $preparedStatement->bind_param("ssddi", $designation, $unit, $price, $totalQuantity, $id);
@@ -204,11 +202,12 @@ class ProductRepository extends GenericRepository {
             $product = $this->findById($object->getId());
         } catch (mysqli_sql_exception $exception) {
             $connection->rollback();
-            throw new Exception($exception);
+            throw new mysqli_sql_exception($exception);
         } finally {
             $preparedStatement->close();
         }
 
         return $product;
     }
+
 }

@@ -11,15 +11,27 @@
  *
  * @author edmilson.cassecasse
  */
-class Supplier {
+class Supplier implements JsonSerializable {
 
     private $id;
     private $name;
-    private $prices;
-    private $products;
+    private $vatNumber;
+    private $products = array();
 
     public function __construct() {
         
+    }
+
+    public function addProduct(Product $product) {
+        if (($key = array_search($product, $this->products)) === false) {
+            array_push($this->products, $product);
+        }
+    }
+
+    public function removeProduct(Product $product) {
+        if (($key = array_search($product, $this->products)) !== false) {
+            unset($this->products[$key]);
+        }
     }
 
     public function getId() {
@@ -30,14 +42,14 @@ class Supplier {
         return $this->name;
     }
 
-    public function getPrices() {
-        return $this->prices;
+    public function getVatNumber() {
+        return $this->vatNumber;
     }
-    
+
     public function getProducts() {
         return $this->products;
     }
-    
+
     public function setId($id) {
         $this->id = $id;
     }
@@ -46,14 +58,14 @@ class Supplier {
         $this->name = $name;
     }
 
-    public function setPrices($prices) {
-        $this->prices = $prices;
+    public function setVatNumber($vatNumber) {
+        $this->vatNumber = $vatNumber;
     }
-    
+
     public function setProducts($products) {
         $this->products = $products;
     }
-    
+
     public function equals($object) {
 
         if ($object == null) {
@@ -68,12 +80,23 @@ class Supplier {
             return false;
         }
 
-        return $object->getName() == $this->getName();
+        return $object->getName() == $this->getName() &&
+                $object->getVatNumber() == $this->getVatNumber();
     }
 
     public function __toString() {
         return "Supplier {" . "ID = " . $this->getId() . ", Name = '"
-                . $this->getName() . '\'' . '}';
+                . $this->getName() . '\'' . ", vatNumber = "
+                . $this->getVatNumber() . '}';
+    }
+
+    public function jsonSerialize() {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'vatNumber' => $this->getVatNumber(),
+            'products' => $this->getProducts()
+        ];
     }
 
 }

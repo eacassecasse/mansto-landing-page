@@ -28,11 +28,10 @@ class UserService {
 
         if (($user !== null) && ($found->equals($user))) {
             throw new BusinessException("Already exists a user with the "
-                    . "given email");
+            . "given email");
         }
 
         return $this->toUser($this->repository->insert($user));
-        
     }
 
     public function findAll(): array {
@@ -46,7 +45,11 @@ class UserService {
     }
 
     public function findById(int $id): User {
-        return $this->toUser($this->repository->findById($id));
+        if ($this->repository->findById($id) === null) {
+            throw new EntityNotFoundException("Could not find a user with the given ID.");
+        } else {
+            return $this->toUser($this->repository->findById($id));
+        }
     }
 
     public function update(User $user): User {

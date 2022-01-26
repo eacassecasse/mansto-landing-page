@@ -11,7 +11,7 @@
  *
  * @author edmilson.cassecasse
  */
-class ProductValidity {
+class Validity implements JsonSerializable {
 
     private $id;
     private $expirationDate;
@@ -64,7 +64,7 @@ class ProductValidity {
             return true;
         }
 
-        if (!($object instanceof ProductValidity)) {
+        if (!($object instanceof Validity)) {
             return false;
         }
 
@@ -72,12 +72,21 @@ class ProductValidity {
                 $object->getExpirationDate() == $this->getExpirationDate() &&
                 $object->getQuantity() == $this->getQuantity();
     }
-    
+
     public function __toString() {
-        return "ProductValidity {" . "ID = " . $this->getId() . ", Product = '"
+        return "Validity {" . "ID = " . $this->getId() . ", Product = '"
                 . $this->getProduct() . '\'' . ", ExpirationDate = '"
                 . $this->getExpirationDate() . '\'' . ", Quantity = "
                 . $this->getQuantity() . '}';
+    }
+
+    public function jsonSerialize() {
+        return [
+            'id' => $this->getId(),
+            'product' => $this->getProduct(),
+            'expirationDate' => $this->getExpirationDate(),
+            'quantity' => $this->getQuantity()
+        ];
     }
 
 }
