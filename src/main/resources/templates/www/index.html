@@ -4,229 +4,216 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
-    <head>
-        <title>Manage your storage without headaches | Mansto</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- CSS only -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" 
-              rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" 
-              crossorigin="anonymous">
-        <link rel="stylesheet" 
-              href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+<html lang="en">
 
-        <!-- Libraries Cascade Stylesheet Files -->
-        <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css" 
-              href="http://static.mansto.com/assets/vendors/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" 
-              href="http://static.mansto.com/assets/vendors/bootstrap/css/bootstrap.min.css">
+<head>
+    <title>Manage your storage without headaches | Mansto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
 
-        <!-- FontAwesome -->
-        <link rel="stylesheet" type="text/css" 
-              href="http://static.mansto.com/assets/vendors/font-awesome/css/font-awesome.min.css">
+    <!-- Libraries Cascade Stylesheet Files -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="http://static.mansto.com/assets/vendors/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="http://static.mansto.com/assets/vendors/bootstrap/css/bootstrap.min.css">
 
-        <!-- Ionicons -->
-        <link rel="stylesheet" type="text/css" 
-              href="http://static.mansto.com/assets/vendors/ionicons/css/ionicons.min.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" type="text/css" href="http://static.mansto.com/assets/vendors/font-awesome/css/font-awesome.min.css">
 
-        <!-- OwlCarousel -->
-        <link rel="stylesheet" type="text/css" 
-              href="http://static.mansto.com/assets/vendors/owlcarousel/assets/owl.carousel.min.css">
-        <link rel="stylesheet" type="text/css" 
-              href="http://static.mansto.com/assets/vendors/owlcarousel/assets/owl.theme.default.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" type="text/css" href="http://static.mansto.com/assets/vendors/ionicons/css/ionicons.min.css">
 
-        <!-- Swiper -->
-        <link rel="stylesheet" type="text/css" 
-              href="http://static.mansto.com/assets/vendors/swiper/css/swiper.min.css">
+    <!-- OwlCarousel -->
+    <link rel="stylesheet" type="text/css" href="http://static.mansto.com/assets/vendors/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="http://static.mansto.com/assets/vendors/owlcarousel/assets/owl.theme.default.min.css">
 
-        <!-- Mobile Nav -->
-        <link rel="stylesheet" type="text/css" 
-              href="http://static.mansto.com/assets/vendors/mobile-nav/assets/css/mobile.nav.css">
+    <!-- Swiper -->
+    <link rel="stylesheet" type="text/css" href="http://static.mansto.com/assets/vendors/swiper/css/swiper.min.css">
 
-        <!-- Main Cascade Stylesheet Files -->
-        <link rel="stylesheet" type="text/css" 
-              href="http://static.mansto.com/assets/css/mansto.default.css?version=21.1.54">
-        <link rel="stylesheet" type="text/css" 
-              href="http://static.mansto.com/assets/css/purpose.css?version=0.0.5">
+    <!-- Mobile Nav -->
+    <link rel="stylesheet" type="text/css" href="http://static.mansto.com/assets/vendors/mobile-nav/assets/css/mobile.nav.css">
 
-        <!-- Favicon -->
-        <link rel="apple-touch-icon" sizes="180x180" href="http://static.mansto.com/assets/favicon/apple-touch-icon.png">
+    <!-- Main Cascade Stylesheet Files -->
+    <link rel="stylesheet" type="text/css" href="http://static.mansto.com/assets/css/mansto.default.css?version=21.1.54">
+    <link rel="stylesheet" type="text/css" href="http://static.mansto.com/assets/css/purpose.css?version=0.0.5">
 
-        <link rel="icon" type="image/png" sizes="32x32" href="http://static.mansto.com/assets/favicon/favicon-32x32.png">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="http://static.mansto.com/assets/favicon/apple-touch-icon.png">
 
-        <link rel="icon" type="image/png" sizes="16x16" href="http://static.mansto.com/assets/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://static.mansto.com/assets/favicon/favicon-32x32.png">
 
-        <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://static.mansto.com/assets/favicon/favicon-16x16.png">
+
+    <link rel="manifest" href="/site.webmanifest">
 
 
-        <script type="text/javascript" 
-                src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-        </script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
 
-        <script type="text/javascript" 
-                src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js">
-        </script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js">
+    </script>
 
-    </head>
-    <body>
+</head>
 
-        <header class="header header-transparent" id="header-main">
-            <!-- Top navbar-->
-            <div id="navbar-top-main" class="navbar-top  navbar-dark bg-dark border-bottom">
-                <div class="container px-0">
-                    <div class="navbar-nav align-items-center">
-                        <div class="d-none d-lg-inline-block">
-                            <span class="navbar-text mr-3">Mansto - Storage Management App</span>
-                        </div>
-                        <div>
-                            <ul class="nav">
-                                <li class="nav-item dropdown ml-lg-2">
-                                    <a class="nav-link px-0" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,10">
-                                        <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/flags/usa_48px.png">
-                                        <span class="d-none d-lg-inline-block">English</span>
-                                        <span class="d-lg-none">EN</span>
+<body>
+
+    <header class="header header-transparent" id="header-main">
+        <!-- Top navbar-->
+        <div id="navbar-top-main" class="navbar-top  navbar-dark bg-dark border-bottom">
+            <div class="container px-0">
+                <div class="navbar-nav align-items-center">
+                    <div class="d-none d-lg-inline-block">
+                        <span class="navbar-text mr-3">Mansto - Storage Management App</span>
+                    </div>
+                    <div>
+                        <ul class="nav">
+                            <li class="nav-item dropdown ml-lg-2">
+                                <a class="nav-link px-0" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,10">
+                                    <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/flags/usa_48px.png">
+                                    <span class="d-none d-lg-inline-block">English</span>
+                                    <span class="d-lg-none">EN</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-sm">
+                                    <a href="#" class="dropdown-item">
+                                        <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/flags/china_48px.png">
+                                        <span class="d-none d-lg-inline-block">Chinese</span>
+                                        <span class="d-lg-none">CH</span>
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-sm">
-                                        <a href="#" class="dropdown-item">
-                                            <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/flags/china_48px.png">
-                                            <span class="d-none d-lg-inline-block">Chinese</span>
-                                            <span class="d-lg-none">CH</span>
-                                        </a>
-                                        <a href="#" class="dropdown-item">
-                                            <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/flags/portugal_48px.png">
-                                            <span class="d-none d-lg-inline-block">Portuguese</span>
-                                            <span class="d-lg-none">PT</span>
-                                        </a>
-                                        <a href="#" class="dropdown-item">
-                                            <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/flags/spain_48px.png">
-                                            <span class="d-none d-lg-inline-block">Spanish</span>
-                                            <span class="d-lg-none">ES</span>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ml-auto">
-                            <ul class="nav">
-                                <li class="nav-item d-lg-none">
-                                    <a href="#" class="nav-link" data-action="omnisearch-open" data-target="#omnisearch"><i class="fa fa-search"></i></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="pages/shop/checkout-cart.html"><i class="fa fa-shopping-cart"></i></a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link pr-0" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-user-circle"></i>
+                                    <a href="#" class="dropdown-item">
+                                        <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/flags/portugal_48px.png">
+                                        <span class="d-none d-lg-inline-block">Portuguese</span>
+                                        <span class="d-lg-none">PT</span>
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                        <h6 class="dropdown-header">User menu</h6>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="fa fa-user"></i>Account
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <span class="float-right badge badge-primary">4</span>
-                                            <i class="fa fa-envelope"></i>Messages
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="fa fa-cog"></i>Settings
-                                        </a>
-                                        <div class="dropdown-divider" role="presentation"></div>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="fa fa-sign-out-alt"></i>Sign out
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                                    <a href="#" class="dropdown-item">
+                                        <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/flags/spain_48px.png">
+                                        <span class="d-none d-lg-inline-block">Spanish</span>
+                                        <span class="d-lg-none">ES</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ml-auto">
+                        <ul class="nav">
+                            <li class="nav-item d-lg-none">
+                                <a href="#" class="nav-link" data-action="omnisearch-open" data-target="#omnisearch"><i class="fa fa-search"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/shop/checkout-cart.html"><i class="fa fa-shopping-cart"></i></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link pr-0" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-user-circle"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                    <h6 class="dropdown-header">User menu</h6>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fa fa-user"></i>Account
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <span class="float-right badge badge-primary">4</span>
+                                        <i class="fa fa-envelope"></i>Messages
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fa fa-cog"></i>Settings
+                                    </a>
+                                    <div class="dropdown-divider" role="presentation"></div>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fa fa-sign-out-alt"></i>Sign out
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Main navbar -->
-            <nav class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-dark bg-dark" id="navbar-main">
-                <div class="container px-lg-0">
-                    <!-- Logo -->
-                    <a class="navbar-brand mr-lg-5" href="index.html">
-                        <img alt="Image placeholder" src="http://static.mansto.com/assets/img/brand/mansto_complete_final.png" id="navbar-logo" style="height: 50px;">
-                    </a>
-                    <!-- Navbar collapse trigger -->
-                    <button class="navbar-toggler pr-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- Main navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-dark bg-dark" id="navbar-main">
+            <div class="container px-lg-0">
+                <!-- Logo -->
+                <a class="navbar-brand mr-lg-5" href="http://mansto.com">
+                    <img alt="Image placeholder" src="http://static.mansto.com/assets/img/brand/mansto_complete_final.png" id="navbar-logo" style="height: 50px;">
+                </a>
+                <!-- Navbar collapse trigger -->
+                <button class="navbar-toggler pr-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <!-- Navbar nav -->
-                    <div class="collapse navbar-collapse" id="navbar-main-collapse">
-                        <ul class="navbar-nav align-items-lg-center">
-                            <!-- Home - Overview  -->
-                            <li class="nav-item active">
-                                <a class="nav-link" href="http://mansto.com">Overview</a>
-                            </li>
-                            <!-- Why Mansto -->
-                            <li class="nav-item dropdown ml-lg-2">
-                                <a class="nav-link px-0" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,10">
+                <!-- Navbar nav -->
+                <div class="collapse navbar-collapse" id="navbar-main-collapse">
+                    <ul class="navbar-nav align-items-lg-center">
+                        <!-- Home - Overview  -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="http://mansto.com">Overview</a>
+                        </li>
+                        <!-- Why Mansto -->
+                        <li class="nav-item dropdown ml-lg-2">
+                            <a class="nav-link px-0" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,10">
                                     Why Mansto?
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-arrow p-0">
-                                    <ul class="list-group list-group-flush">
-                                        <!-- Clean Design -->
-                                        <li>
-                                            <div class="list-group-item list-group-item-action">
-                                                <div class="media d-flex align-items-center">
-                                                    <figure style="width: 50px;">
-                                                        <img class="img-fluid" alt="Image Placeholder" src="http://static.mansto.com/assets/img/icons/002-curve.png">
-                                                    </figure>
-                                                    <div class="media-body ml-3">
-                                                        <h6 class="mb-1">Clean Design</h6>
-                                                        <p class="mb-0">Everything placed where you can easily find.</p>
-                                                    </div>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-arrow p-0">
+                                <ul class="list-group list-group-flush">
+                                    <!-- Clean Design -->
+                                    <li>
+                                        <div class="list-group-item list-group-item-action">
+                                            <div class="media d-flex align-items-center">
+                                                <figure style="width: 50px;">
+                                                    <img class="img-fluid" alt="Image Placeholder" src="http://static.mansto.com/assets/img/icons/002-curve.png">
+                                                </figure>
+                                                <div class="media-body ml-3">
+                                                    <h6 class="mb-1">Clean Design</h6>
+                                                    <p class="mb-0">Everything placed where you can easily find.</p>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </div>
+                                    </li>
 
-                                        <!-- User Friendly-->
-                                        <li>
-                                            <div class="list-group-item list-group-item-action">
-                                                <div class="media d-flex align-items-center">
-                                                    <figure style="width: 50px;">
-                                                        <img class="img-fluid" alt="Image Placeholder" src="http://static.mansto.com/assets/img/icons/003-friends.png">
-                                                    </figure>
-                                                    <div class="media-body ml-3">
-                                                        <h6 class="mb-1">User Friendly</h6>
-                                                        <p class="mb-0">After reading one time the docs, you can go rock!</p>
-                                                    </div>
+                                    <!-- User Friendly-->
+                                    <li>
+                                        <div class="list-group-item list-group-item-action">
+                                            <div class="media d-flex align-items-center">
+                                                <figure style="width: 50px;">
+                                                    <img class="img-fluid" alt="Image Placeholder" src="http://static.mansto.com/assets/img/icons/003-friends.png">
+                                                </figure>
+                                                <div class="media-body ml-3">
+                                                    <h6 class="mb-1">User Friendly</h6>
+                                                    <p class="mb-0">After reading one time the docs, you can go rock!</p>
                                                 </div>
                                             </div>
-                                        </li>
-                                        <!-- High Security -->
-                                        <li>
-                                            <div class="list-group-item list-group-item-action">
-                                                <div class="media d-flex align-items-center">
-                                                    <figure style="width: 50px;">
-                                                        <img class="img-fluid" alt="Image Placeholder" src="http://static.mansto.com/assets/img/icons/004-security.png">
-                                                    </figure>
-                                                    <div class="media-body ml-3">
-                                                        <h6 class="mb-1">High Security</h6>
-                                                        <p class="mb-0">Top Level Authentication for your protection.</p>
-                                                    </div>
+                                        </div>
+                                    </li>
+                                    <!-- High Security -->
+                                    <li>
+                                        <div class="list-group-item list-group-item-action">
+                                            <div class="media d-flex align-items-center">
+                                                <figure style="width: 50px;">
+                                                    <img class="img-fluid" alt="Image Placeholder" src="http://static.mansto.com/assets/img/icons/004-security.png">
+                                                </figure>
+                                                <div class="media-body ml-3">
+                                                    <h6 class="mb-1">High Security</h6>
+                                                    <p class="mb-0">Top Level Authentication for your protection.</p>
                                                 </div>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <!-- Support menu -->
-                            <li class="nav-item dropdown ml-lg-2">
-                                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,10">
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- Support menu -->
+                        <li class="nav-item dropdown ml-lg-2">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,10">
                                     Support
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-arrow p-0">
-                                    <ul class="list-group list-group-flush">
-                                        <li>
-                                            <a href="#" class="list-group-item list-group-item-action" role="button">
-                                                <div class="media d-flex align-items-center">
-                                                    <figure style="width: 50px;">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="145px" height="113px" viewBox="0 0 145 113" version="1.1" class="injected-svg svg-inject img-fluid" style="height: 50px;">
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-arrow p-0">
+                                <ul class="list-group list-group-flush">
+                                    <li>
+                                        <a href="#" class="list-group-item list-group-item-action" role="button">
+                                            <div class="media d-flex align-items-center">
+                                                <figure style="width: 50px;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="145px" height="113px" viewBox="0 0 145 113" version="1.1" class="injected-svg svg-inject img-fluid" style="height: 50px;">
                                                         <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
                                                         <title>Apps</title>
                                                         <desc>Created with Sketch.</desc>
@@ -253,126 +240,122 @@ and open the template in the editor.
                                                         </g>
                                                         </g>
                                                         </svg>
-                                                    </figure>
-                                                    <div class="media-body ml-3">
-                                                        <h6 class="mb-1">Get Started</h6>
-                                                        <p class="mb-0">What are you waiting for? Started riding today on the road of success.</p>
-                                                    </div>
+                                                </figure>
+                                                <div class="media-body ml-3">
+                                                    <h6 class="mb-1">Get Started</h6>
+                                                    <p class="mb-0">What are you waiting for? Started riding today on the road of success.</p>
                                                 </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="dropdown-menu-links rounded-bottom delimiter-top p-4">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <a href="sections.html#headers" class="dropdown-item">Documentation</a>
-                                                <a href="sections.html#footers" class="dropdown-item">Talk to us!</a>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <a href="sections.html#covers" class="dropdown-item">Guides</a>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <a href="sections.html#swiper" class="dropdown-item">Tutorials</a>
-                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="dropdown-menu-links rounded-bottom delimiter-top p-4">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <a href="sections.html#headers" class="dropdown-item">Documentation</a>
+                                            <a href="sections.html#footers" class="dropdown-item">Talk to us!</a>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <a href="sections.html#covers" class="dropdown-item">Guides</a>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <a href="sections.html#swiper" class="dropdown-item">Tutorials</a>
                                         </div>
                                     </div>
                                 </div>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-                            <li class="nav-item d-none d-lg-block">
-                                <a href="#" class="nav-link active"
-                                   data-action="omnisearch-open" 
-                                   data-target="#omnisearch">
-                                    <i class="fa fa-search"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="http://accounts.mansto.com/signin">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="http://accounts.mansto.com/register">Register</a>
-                            </li>
-                        </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+                        <li class="nav-item d-none d-lg-block">
+                            <a href="#" class="nav-link active" data-action="omnisearch-open" data-target="#omnisearch">
+                                <i class="fa fa-search"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://accounts.mansto.com/signin">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://accounts.mansto.com/register">Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Omnisearch -->
+    <div id="omnisearch" class="omnisearch">
+        <div class="container">
+            <!-- Search form -->
+            <form class="omnisearch-form">
+                <div class="form-group">
+                    <div class="input-group input-group-merge input-group-flush">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Type and hit enter ...">
                     </div>
                 </div>
-            </nav>
-        </header>
-
-        <!-- Omnisearch -->
-        <div id="omnisearch" class="omnisearch">
-            <div class="container">
-                <!-- Search form -->
-                <form class="omnisearch-form">
-                    <div class="form-group">
-                        <div class="input-group input-group-merge input-group-flush">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-search"></i></span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Type and hit enter ...">
-                        </div>
-                    </div>
-                </form>
-                <div class="omnisearch-suggestions">
-                    <h6 class="heading">Search Suggestions</h6>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a class="list-link" href="#">
-                                        <i class="fa fa-search"></i>
-                                        <span>macbook pro</span> in Laptops
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="list-link" href="#">
-                                        <i class="fa fa-search"></i>
-                                        <span>iphone 8</span> in Smartphones
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="list-link" href="#">
-                                        <i class="fa fa-search"></i>
-                                        <span>macbook pro</span> in Laptops
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="list-link" href="#">
-                                        <i class="fa fa-search"></i>
-                                        <span>beats pro solo 3</span> in Headphones
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="list-link" href="#">
-                                        <i class="fa fa-search"></i>
-                                        <span>smasung galaxy 10</span> in Phones
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+            </form>
+            <div class="omnisearch-suggestions">
+                <h6 class="heading">Search Suggestions</h6>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a class="list-link" href="#">
+                                    <i class="fa fa-search"></i>
+                                    <span>macbook pro</span> in Laptops
+                                </a>
+                            </li>
+                            <li>
+                                <a class="list-link" href="#">
+                                    <i class="fa fa-search"></i>
+                                    <span>iphone 8</span> in Smartphones
+                                </a>
+                            </li>
+                            <li>
+                                <a class="list-link" href="#">
+                                    <i class="fa fa-search"></i>
+                                    <span>macbook pro</span> in Laptops
+                                </a>
+                            </li>
+                            <li>
+                                <a class="list-link" href="#">
+                                    <i class="fa fa-search"></i>
+                                    <span>beats pro solo 3</span> in Headphones
+                                </a>
+                            </li>
+                            <li>
+                                <a class="list-link" href="#">
+                                    <i class="fa fa-search"></i>
+                                    <span>smasung galaxy 10</span> in Phones
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- MAIN CONTENT -->
-        <main class="main-content">
-            <!-- Introduction Section -->
-            <section class="intro section-rotate bg-section-secondary border-0">
-                <div class="section-inner bg-gradient-primary border-0"></div>
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- Introduction Section -->
+        <section class="intro section-rotate bg-section-secondary border-0">
+            <div class="section-inner bg-gradient-primary border-0"></div>
 
-                <!-- SVG illustration -->
-                <div class="pt-10 pr-lg-5 position-absolute middle right-0 col-lg-7 col-xl-6 d-none d-lg-block">
-                    <figure class="w-100" style="max-width: 1000px;">
-                        <img alt="Image placeholder" 
-                             src="http://static.mansto.com/assets/img/illustration/intro-img.svg" 
-                             class="svg-inject img-fluid" style="height: 1000px;">
-                    </figure>
-                </div>
-                <!-- SVG background -->
-                <div class="bg-absolute-cover bg-size--contain d-flex align-items-center">
-                    <figure class="w-100 d-none d-lg-block">
-                        <!-- SVG Code -->
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 820" class="injected-svg svg-inject" style="height: 1000px;">
+            <!-- SVG illustration -->
+            <div class="pt-10 pr-lg-5 position-absolute middle right-0 col-lg-7 col-xl-6 d-none d-lg-block">
+                <figure class="w-100" style="max-width: 1000px;">
+                    <img alt="Image placeholder" src="http://static.mansto.com/assets/img/illustration/intro-img.svg" class="svg-inject img-fluid" style="height: 1000px;">
+                </figure>
+            </div>
+            <!-- SVG background -->
+            <div class="bg-absolute-cover bg-size--contain d-flex align-items-center">
+                <figure class="w-100 d-none d-lg-block">
+                    <!-- SVG Code -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 820" class="injected-svg svg-inject" style="height: 1000px;">
                         <path class="fill-cyan" d="M 153.37 455.293 L 143.264 444.989 C 142.269 443.976 142.269 442.371 143.264 441.358 L 153.37 431.055 C 154.364 430.042 155.938 430.042 156.932 431.055 L 167.038 441.358 C 168.032 442.371 168.032 443.976 167.038 444.989 L 156.932 455.293 C 156.02 456.306 154.364 456.306 153.37 455.293 Z" style=""></path>
                         <circle class="fill-pink" cx="1184.025" cy="85.335" r="9.723" style=""></circle>
                         <circle class="fill-yellow" stroke-width="3" stroke-miterlimit="10" cx="320.504" cy="209.51" r="12.587" style=""></circle>
@@ -383,363 +366,340 @@ and open the template in the editor.
                         <circle class="fill-cyan" stroke-width="3" stroke-miterlimit="10" cx="730.584" cy="767.881" r="9.997" style=""></circle>
                         <path class="fill-purple" d="M 1390.234 263.204 C 1390.491 262.543 1391.08 262.067 1391.782 261.958 L 1398.352 260.938 C 1399.053 260.829 1399.759 261.103 1400.204 261.655 L 1404.373 266.834 C 1404.818 267.387 1404.934 268.136 1404.678 268.798 L 1402.277 274.997 C 1402.021 275.659 1401.43 276.134 1400.729 276.244 L 1394.16 277.265 C 1393.459 277.373 1392.752 277.1 1392.307 276.547 L 1388.138 271.368 C 1387.693 270.815 1387.577 270.066 1387.833 269.404 L 1390.234 263.204 Z" style=""></path>
                         </svg>
-                    </figure>
-                </div>
+                </figure>
+            </div>
 
-                <!-- Hero Container -->
-                <div class="container py-5 pt-lg-6 d-flex align-items-center position-relative zindex-100 my-10 my-lg-6">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-lg-5 col-xl-6 text-center text-lg-left">
-                                <div>
-                                    <h2 class="text-white mb-4 mb-md-5 d-lg-none d-xl-block">
-                                        <span class="display-4 font-weight-light">More Security</span>
-                                        <span class="d-block display-4">Less 
+            <!-- Hero Container -->
+            <div class="container py-5 pt-lg-6 d-flex align-items-center position-relative zindex-100 my-10 my-lg-6">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-lg-5 col-xl-6 text-center text-lg-left">
+                            <div>
+                                <h2 class="text-white mb-4 mb-md-5 d-lg-none d-xl-block">
+                                    <span class="display-4 font-weight-light">More Security</span>
+                                    <span class="d-block display-4">Less 
                                             <strong class="font-weight-light">Complexity</strong>
                                         </span>
-                                    </h2>
-                                    <h2 class="text-white mb-4 mb-md-5 d-none d-lg-block d-xl-none">
-                                        <span class="display-5 font-weight-light">More Security</span>
-                                        <span class="d-block display-5">Less 
+                                </h2>
+                                <h2 class="text-white mb-4 mb-md-5 d-none d-lg-block d-xl-none">
+                                    <span class="display-5 font-weight-light">More Security</span>
+                                    <span class="d-block display-5">Less 
                                             <strong class="font-weight-light">Complexity</strong>
                                         </span>
-                                    </h2>
-                                    <p class="lead text-white">
-                                        No need to change your way of thinking, 
-                                        just change the way you see things and 
-                                        achieve more success!</p>
-                                    <div class="mt-1">
-                                        <a href="#" 
-                                           class="btn btn-white rounded-pill hover-translate-y-n3 btn-icon mr-sm-4 scroll-me">
-                                            <span class="btn-inner--text">Get Started</span>
-                                            <span class="btn-inner--icon"><i class="fa fa-angle-right"></i></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Why Mansto Section -->
-            <section class="why-us slice bg-section-secondary">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card text-center hover-shadow-lg hover-translate-y-n10">
-                                <div class="px-4 py-5">
-                                    <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/002-curve.png" class="svg-inject" style="height: 70px;">
-                                </div>
-                                <div class="px-4 pb-5">
-                                    <h5>Clean Design</h5>
-                                    <p class="text-muted">Everything placed where you can easily find.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card text-center hover-shadow-lg hover-translate-y-n10">
-                                <div class="px-4 py-5">
-                                    <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/003-friends.png" class="svg-inject" style="height: 70px;">
-                                </div>
-                                <div class="px-4 pb-5">
-                                    <h5>User Friendly</h5>
-                                    <p class="text-muted">After reading one time the docs, you can go rock!</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card text-center hover-shadow-lg hover-translate-y-n10">
-                                <div class="px-4 py-5">
-                                    <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/004-security.png" class="svg-inject" style="height: 70px;">
-                                </div>
-                                <div class="px-4 pb-5">
-                                    <h5>High Security</h5>
-                                    <p class="text-muted">Top Level Authentication for your protection.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- How it Looks Section -->
-            <section class="how-it-looks">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col text-center py-5">
-                            <h2>How it Looks</h2>
-                            <p>An application developed based on 
-                                simplicity, comfortability and safety.</p>
-                        </div>
-                        <div class="py-5">...</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Pricing Section -->
-            <section class="pricing py-5">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <h2>Plans &amp; Pricing</h2>
-                            <p>The best tools always come with the best plans 
-                                that fits everyone&apos;s pocket.</p>
-                        </div>                       
-                    </div>
-
-                    <div class="row row-cols-1 row-cols-lg-2 justify-content-center text-center">
-                        <div class="col-12 col-md-8 col-lg-6">
-                            <div class="price-item">
-                                <div class="price-header">
-                                    <h1>Advanced</h1>
-                                    <h2>7<sub>08&dollar;</sub></h2>
-                                    <span>Per Month</span>
-                                </div>
-
-                                <div class="price-content">
-                                    <ul>
-                                        <li>Internal &amp; external requests</li>
-                                        <li>ABC Classification</li>
-                                        <li>Work in team</li>
-                                        <li>Messenger Plugin</li>
-                                    </ul>
-
-                                    <hr>
-
-                                    <div class="d-block">
-                                        <a class="btn btn-outline-primary">Buy now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-8 col-lg-6">
-                            <div class="price-item">
-                                <div class="price-header">
-                                    <h1>Premiun</h1>
-                                    <h2>16<sub>45&dollar;</sub></h2>
-                                    <span>Per Month</span>
-                                </div>
-
-                                <div class="price-content">
-                                    <ul>
-                                        <li>Internal &amp; external requests</li>
-                                        <li>ABC Classification</li>
-                                        <li>Work in team</li>
-                                        <li>Messenger Plugin</li>
-                                    </ul>
-
-                                    <hr>
-
-                                    <div class="d-block">
-                                        <a class="btn btn-outline-primary">Buy now</a>
-                                    </div>
-                                </div>
-
-                                <span class="best-choice">Recommended</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <!-- Call to Action Section -->
-            <section class="cta py-3 pb-5">
-                <div class="container">
-                    <div class="row justify-content-center">
-
-                        <div class="col-md-10">
-                            <div class="card bg-primary shadow hover-shadow-lg border-0 position-relative zindex-100">
-                                <div class="card-body py-5">
-                                    <div class="d-flex align-items-start">
-                                        <div class="icon text-white">
-                                            <i class="fa fa-question-circle"></i>
-                                        </div>
-                                        <div class="icon-text">
-                                            <h5 class="h4 text-white">Get Started with Mansto today!</h5>
-                                            <p class="mb-0 text-white">Build based on core concepts like simplicity, 
-                                                comfort and safety, mansto aggregates value to your 
-                                                personal and professional life. 
-                                                <span><strong>Need more help?</strong></span></p>
-
-                                            <div class="col-12 d-flex justify-content-end">
-                                                <a href="#">
-                                                    <i class="fa fa-phone"></i>
-                                                    <span>Talk to us!</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </section>
-
-            <!-- Testimonials Section -->
-            <section class="testimonials footer-dark">
-                <div class="content-rotate"></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-10 text-center container">
-                            <p id="testimonial__comment"></p>
-                        </div>
-                        <div class="col-12 col-md-10">
-                            <div class="owl-carousel testimonials-carousel">
-                                <div class="testimonial-item" data-strln-testimonial="Joseph Gonzalez">
-                                    <img 
-                                        src="http://static.mansto.com/assets/img/testimonials/testimonial-1.jpg" 
-                                        alt="Joseph Gonzalez">
-                                </div>
-                                <div class="testimonial-item" data-strln-testimonial="Nora Hulton">
-                                    <img
-                                        src="http://static.mansto.com/assets/img/testimonials/testimonial-2.jpg" 
-                                        alt="Nora Hulton">
-                                </div>
-                                <div class="testimonial-item" data-strln-testimonial="Anastasia Vityukova">
-                                    <img
-                                        src="http://static.mansto.com/assets/img/testimonials/testimonial-3.jpg" 
-                                        alt="Anastasia Vityukova">
-                                </div>
-                                <div class="testimonial-item" data-strln-testimonial="Art Hauntington">
-                                    <img 
-                                        src="http://static.mansto.com/assets/img/testimonials/testimonial-4.jpg" 
-                                        alt="Art Hauntington">
-                                </div>
-                                <div class="testimonial-item" data-strln-testimonial="Austin Wade">
-                                    <img 
-                                        src="http://static.mansto.com/assets/img/testimonials/testimonial-5.jpg" 
-                                        alt="Austin Wade">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-8 text-center container">
-                            <p id="testimonial__description">
-                                <span id="testimonial__description--name"></span>, 
-                                <span id="testimonial__description--position"></span></p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="footer footer-dark" id="footer-main">
-            <div class="container">
-                <div class="row row-cols-2 px-2 mb-5">
-                    <div class="col-12 col-lg-6 pt-3 mb-5">
-                        <a href="http://mansto.com">
-                            <!--<h1>mansto</h1>-->
-                            <img class="footer-logo" src="http://static.mansto.com/assets/img/brand/mansto_complete_final.png">
-                        </a>
-                        <p>Mansto is an application that helps you to 
-                            find more easy to manage your storage and not 
-                            only, comes with a bunch of tools in order to 
-                            provide more comfortability.</p>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2 pt-2 pb-1">
-                        <h6 class="heading mb-3">Account</h6>
-                        <nav>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Settings</a></li>
-                                <li><a href="#">Billing</a></li>
-                                <li><a href="#">Notifications</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2 pt-2 pb-1">
-                        <h6 class="heading mb-3">Support</h6>
-                        <nav>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Guides</a></li>
-                                <li><a href="#">Documentation</a></li>
-                                <li><a href="#">Terms &amp; Conditions</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2 pt-2 pb-1">
-                        <h6 class="heading mb-3">Community</h6>
-                        <nav>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Forum</a></li>
-                                <li><a href="#">Developers</a></li>
-                                <li><a href="#">News</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-
-                <div class="row align-items-center justify-content-end delimiter-top py-4">
-                    <div class="col-12 col-md-6 text-center text-md-start pt-md-3">
-                        <p class="copyright text-sm">&COPY;2018-2021 <a href="#">Streamline</a>. All rights reserved.</p>
-                    </div>
-                    <div class="col-12 col-md-6 text-center">
-                        <nav>
-                            <ul class="nav justify-content-center justify-content-md-end">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <i class="fa fa-facebook-f"></i>
+                                </h2>
+                                <p class="lead text-white">
+                                    No need to change your way of thinking, just change the way you see things and achieve more success!</p>
+                                <div class="mt-1">
+                                    <a href="#" class="btn btn-white rounded-pill hover-translate-y-n3 btn-icon mr-sm-4 scroll-me">
+                                        <span class="btn-inner--text">Get Started</span>
+                                        <span class="btn-inner--icon"><i class="fa fa-angle-right"></i></span>
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <i class="fa fa-instagram"></i>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <i class="fa fa-linkedin"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </footer>
-        <!-- JavaScript Bundle with Popper -->
-        <script 
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" 
-            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" 
-        crossorigin="anonymous"></script>
+        </section>
 
-        <!-- Libraries Javascript Files -->
-        <!-- JQuery -->
-        <script type="text/javascript" src="http://static.mansto.com/assets/vendors/jquery/jquery-3.6.0.js"></script>
-        <script type="text/javascript" src="http://static.mansto.com/assets/vendors/jquery/jquery-migrate-3.3.2.js"></script>
+        <!-- Why Mansto Section -->
+        <section class="why-us slice bg-section-secondary">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="card text-center hover-shadow-lg hover-translate-y-n10">
+                            <div class="px-4 py-5">
+                                <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/002-curve.png" class="svg-inject" style="height: 70px;">
+                            </div>
+                            <div class="px-4 pb-5">
+                                <h5>Clean Design</h5>
+                                <p class="text-muted">Everything placed where you can easily find.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="card text-center hover-shadow-lg hover-translate-y-n10">
+                            <div class="px-4 py-5">
+                                <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/003-friends.png" class="svg-inject" style="height: 70px;">
+                            </div>
+                            <div class="px-4 pb-5">
+                                <h5>User Friendly</h5>
+                                <p class="text-muted">After reading one time the docs, you can go rock!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="card text-center hover-shadow-lg hover-translate-y-n10">
+                            <div class="px-4 py-5">
+                                <img alt="Image placeholder" src="http://static.mansto.com/assets/img/icons/004-security.png" class="svg-inject" style="height: 70px;">
+                            </div>
+                            <div class="px-4 pb-5">
+                                <h5>High Security</h5>
+                                <p class="text-muted">Top Level Authentication for your protection.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it Looks Section -->
+        <section class="how-it-looks">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col text-center py-5">
+                        <h2>How it Looks</h2>
+                        <p>An application developed based on simplicity, comfortability and safety.</p>
+                    </div>
+                    <div class="py-5">...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2>Plans &amp; Pricing</h2>
+                        <p>The best tools always come with the best plans that fits everyone&apos;s pocket.</p>
+                    </div>
+                </div>
+
+                <div class="row row-cols-1 row-cols-lg-2 justify-content-center text-center">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <div class="price-item">
+                            <div class="price-header">
+                                <h1>Advanced</h1>
+                                <h2>7<sub>08&dollar;</sub></h2>
+                                <span>Per Month</span>
+                            </div>
+
+                            <div class="price-content">
+                                <ul>
+                                    <li>Internal &amp; external requests</li>
+                                    <li>ABC Classification</li>
+                                    <li>Work in team</li>
+                                    <li>Messenger Plugin</li>
+                                </ul>
+
+                                <hr>
+
+                                <div class="d-block">
+                                    <a class="btn btn-outline-primary">Buy now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <div class="price-item">
+                            <div class="price-header">
+                                <h1>Premiun</h1>
+                                <h2>16<sub>45&dollar;</sub></h2>
+                                <span>Per Month</span>
+                            </div>
+
+                            <div class="price-content">
+                                <ul>
+                                    <li>Internal &amp; external requests</li>
+                                    <li>ABC Classification</li>
+                                    <li>Work in team</li>
+                                    <li>Messenger Plugin</li>
+                                </ul>
+
+                                <hr>
+
+                                <div class="d-block">
+                                    <a class="btn btn-outline-primary">Buy now</a>
+                                </div>
+                            </div>
+
+                            <span class="best-choice">Recommended</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="cta py-3 pb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+
+                    <div class="col-md-10">
+                        <div class="card bg-primary shadow hover-shadow-lg border-0 position-relative zindex-100">
+                            <div class="card-body py-5">
+                                <div class="d-flex align-items-start">
+                                    <div class="icon text-white">
+                                        <i class="fa fa-question-circle"></i>
+                                    </div>
+                                    <div class="icon-text">
+                                        <h5 class="h4 text-white">Get Started with Mansto today!</h5>
+                                        <p class="mb-0 text-white">Build based on core concepts like simplicity, comfort and safety, mansto aggregates value to your personal and professional life.
+                                            <span><strong>Need more help?</strong></span></p>
+
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <a href="#">
+                                                <i class="fa fa-phone"></i>
+                                                <span>Talk to us!</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials footer-dark">
+            <div class="content-rotate"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-10 text-center container">
+                        <p id="testimonial__comment"></p>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <div class="owl-carousel testimonials-carousel">
+                            <div class="testimonial-item" data-strln-testimonial="Joseph Gonzalez">
+                                <img src="http://static.mansto.com/assets/img/testimonials/testimonial-1.jpg" alt="Joseph Gonzalez">
+                            </div>
+                            <div class="testimonial-item" data-strln-testimonial="Nora Hulton">
+                                <img src="http://static.mansto.com/assets/img/testimonials/testimonial-2.jpg" alt="Nora Hulton">
+                            </div>
+                            <div class="testimonial-item" data-strln-testimonial="Anastasia Vityukova">
+                                <img src="http://static.mansto.com/assets/img/testimonials/testimonial-3.jpg" alt="Anastasia Vityukova">
+                            </div>
+                            <div class="testimonial-item" data-strln-testimonial="Art Hauntington">
+                                <img src="http://static.mansto.com/assets/img/testimonials/testimonial-4.jpg" alt="Art Hauntington">
+                            </div>
+                            <div class="testimonial-item" data-strln-testimonial="Austin Wade">
+                                <img src="http://static.mansto.com/assets/img/testimonials/testimonial-5.jpg" alt="Austin Wade">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8 text-center container">
+                        <p id="testimonial__description">
+                            <span id="testimonial__description--name"></span>,
+                            <span id="testimonial__description--position"></span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer footer-dark" id="footer-main">
+        <div class="container">
+            <div class="row row-cols-2 px-2 mb-5">
+                <div class="col-12 col-lg-6 pt-3 mb-5">
+                    <a href="http://mansto.com">
+                        <!--<h1>mansto</h1>-->
+                        <img class="footer-logo" src="http://static.mansto.com/assets/img/brand/mansto_complete_final.png">
+                    </a>
+                    <p>Mansto is an application that helps you to find more easy to manage your storage and not only, comes with a bunch of tools in order to provide more comfortability.</p>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 pt-2 pb-1">
+                    <h6 class="heading mb-3">Account</h6>
+                    <nav>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Settings</a></li>
+                            <li><a href="#">Billing</a></li>
+                            <li><a href="#">Notifications</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 pt-2 pb-1">
+                    <h6 class="heading mb-3">Support</h6>
+                    <nav>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Guides</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Terms &amp; Conditions</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 pt-2 pb-1">
+                    <h6 class="heading mb-3">Community</h6>
+                    <nav>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Forum</a></li>
+                            <li><a href="#">Developers</a></li>
+                            <li><a href="#">News</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-end delimiter-top py-4">
+                <div class="col-12 col-md-6 text-center text-md-start pt-md-3">
+                    <p class="copyright text-sm">&COPY;2018-2021 <a href="#">Streamline</a>. All rights reserved.</p>
+                </div>
+                <div class="col-12 col-md-6 text-center">
+                    <nav>
+                        <ul class="nav justify-content-center justify-content-md-end">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fa fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- Libraries Javascript Files -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="http://static.mansto.com/assets/vendors/jquery/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="http://static.mansto.com/assets/vendors/jquery/jquery-migrate-3.3.2.js"></script>
 
 
-        <!-- Bootstrap -->
-        <!--<script type="text/javascript" src="http://static.mansto.com/assets/vendors/bootstrap/js/bootstrap.bundle.js"></script>-->
-        <script type="text/javascript" src="http://static.mansto.com/assets/vendors/bootstrap/js/validate-forms.js"></script>
+    <!-- Bootstrap -->
+    <!--<script type="text/javascript" src="http://static.mansto.com/assets/vendors/bootstrap/js/bootstrap.bundle.js"></script>-->
+    <script type="text/javascript" src="http://static.mansto.com/assets/vendors/bootstrap/js/validate-forms.js"></script>
 
-        <!-- OwlCarousel -->
-        <script type="text/javascript" src="http://static.mansto.com/assets/vendors/owlcarousel/owl.carousel.min.js?version=0.0.2"></script>
+    <!-- OwlCarousel -->
+    <script type="text/javascript" src="http://static.mansto.com/assets/vendors/owlcarousel/owl.carousel.min.js?version=0.0.2"></script>
 
-        <!-- Swiper -->
-        <link rel="stylesheet" type="text/css" 
-              href="http://static.mansto.com/assets/vendors/swiper/js/swiper.min.js">
+    <!-- Swiper -->
+    <link rel="stylesheet" type="text/css" href="http://static.mansto.com/assets/vendors/swiper/js/swiper.min.js">
 
-        <!-- Typed -->
-        <script type="text/javascript" src="http://static.mansto.com/assets/vendors/typed/typed.js"></script>
+    <!-- Typed -->
+    <script type="text/javascript" src="http://static.mansto.com/assets/vendors/typed/typed.js"></script>
 
-        <!-- Mobile Navbar -->
-        <script type="text/javascript" src="http://static.mansto.com/assets/vendors/mobile-nav/assets/js/mobile-nav.js"></script>
+    <!-- Mobile Navbar -->
+    <script type="text/javascript" src="http://static.mansto.com/assets/vendors/mobile-nav/assets/js/mobile-nav.js"></script>
 
-        <!-- Main Javascript Files -->
-        <script type="text/javascript" src="http://static.mansto.com/assets/js/initializer.js?version=1.0.25"></script>
-        <script type="text/javascript" src="http://static.mansto.com/assets/js/purpose.js?version=0.0.3"></script>
-    </body>
+    <!-- Main Javascript Files -->
+    <script type="text/javascript" src="http://static.mansto.com/assets/js/initializer.js?version=1.0.25"></script>
+    <script type="text/javascript" src="http://static.mansto.com/assets/js/purpose.js?version=0.0.3"></script>
+</body>
+
 </html>
