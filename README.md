@@ -1,1 +1,1 @@
-# mansto-landing_page
+# mansto-landing-page
